@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 20 ديسمبر 2018 الساعة 01:27
+-- Generation Time: 27 ديسمبر 2018 الساعة 20:43
 -- إصدار الخادم: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -61,7 +61,8 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `photo`) VALUES
-(1, 'jhsjdfh', '5c18df3700ab9181218511912.png');
+(1, 'jhsjdfh', '5c18df3700ab9181218511912.png'),
+(2, 'shrooq', '5c24de568f32e271218144603.png');
 
 -- --------------------------------------------------------
 
@@ -120,7 +121,7 @@ CREATE TABLE `price_gold` (
 --
 
 INSERT INTO `price_gold` (`id`, `price_12`, `price_14`, `price_18`, `price_21`, `price_22`, `price_24`, `last_update`) VALUES
-(1, 19.5, 22.737, 29.25, 34.125, 35.724, 39, '2018-12-20 01:23:39');
+(1, 19.75, 23.0285, 29.625, 34.5625, 36.182, 39.5, '2018-12-27 03:13:30');
 
 -- --------------------------------------------------------
 
@@ -165,10 +166,10 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `first_name` varchar(500) NOT NULL,
   `last_name` varchar(500) NOT NULL,
-  `email` varchar(500) NOT NULL,
+  `email` varchar(200) NOT NULL,
   `password` varchar(500) NOT NULL,
   `type` varchar(500) NOT NULL,
-  `photo` varchar(500) NOT NULL
+  `photo` varchar(500) NOT NULL DEFAULT 'default_user.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -176,7 +177,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `type`, `photo`) VALUES
-(1, 'shrooq', 'saad', 'shrooq@hotmail.com', 'shrooq', 'saller', 'pic.png');
+(6, 'shrooq', 'shrooq', 'shrooq@shrooq', 'shrooq', 'customer', 'default_user.png'),
+(7, 'noor', 'saad', 'noor@noor', 'noor', 'saller', 'default_user.png');
 
 --
 -- Indexes for dumped tables
@@ -244,7 +246,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `commission`
@@ -256,13 +258,13 @@ ALTER TABLE `commission`
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `price_gold`
 --
 ALTER TABLE `price_gold`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -274,13 +276,13 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `replay`
 --
 ALTER TABLE `replay`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

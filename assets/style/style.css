@@ -11,11 +11,21 @@
 /* End Global */
 
 /* Start of Container*/
+.content_logo{
+    background: #d2d3d5;
+}
+.logo{
+    width: 200px;
+    position: relative;
+    left: 40%;
+    top: 70px;
+    border-radius: 100px
+}
     .container_logo{
         width: 40%;
         margin-top: 8%;
         margin-left: 28%;
-        border: 2px solid #c3bdbd87;
+        /*border: 2px solid #c3bdbd87;*/
         padding: 20px;
     }
 /*End Of Container*/
@@ -24,7 +34,8 @@
 /*start of header*/
 
 #logo{
-    width: 45px;  
+    width: 54px;
+    border-radius: 100px;  
     }
     #logo-h{
         padding-top: 25px;

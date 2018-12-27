@@ -38,7 +38,7 @@ include_once("core/admin.class.php");
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
                 <a class="navbar-brand" href="main.html">
-                    <img src="assets/img/jewelry-logo.jpg" alt="logo" id="logo">
+                    <img src="assets/img/logo.jpg" alt="logo" id="logo">
                 </a>
                 <h2 id="logo-h"> Jewelry</h2>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

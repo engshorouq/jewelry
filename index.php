@@ -11,11 +11,11 @@
     
 
 </head>
-<body>
+<body class="content_logo">
 
-    
+ <img src="assets/img/logo.jpg" alt="logo" class="logo">   
 <div class="container_logo">
-  <h2>Jewelry</h2>
+  
   <form name="form_login" method="post" id="form_login" enctype="multipart/form-data" >
     <div class="form-group">
       <label for="email">Email:</label>

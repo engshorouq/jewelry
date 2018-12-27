@@ -1,0 +1,206 @@
+*{
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Verdana,sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    overflow-x: hidden;
+}
+
+/* Start of header*/
+#row{
+    border-bottom: 1px solid #8c82fba1;
+    border-top: 1px solid #8c82fba1;
+}
+.logo-header{
+    display: block;
+    width: 160px;
+    margin-left: 59%;
+    height: 135px;
+
+}
+.ul_header{
+    list-style-type: none;
+    overflow: hidden;
+}
+.ul_header li{
+    float: left;
+}
+.ul_header li a{
+    display: block;
+    margin-top: 95px;
+    margin-left: 20px;
+    color: #2e2f61;
+    text-decoration: none;
+}
+.ul_header li a:hover{
+    color: #2a2ef1;
+}
+/*End of header*/
+
+/*start of nav */
+.ul_nav{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    margin-left: 30%;
+}
+.ul_nav li{
+    float: left;
+}
+.ul_nav li a{
+  display: block;
+  color: #2e2f61;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.ul_nav li a:hover{
+    background: #d2d2d2;
+    color: #28294b;
+}
+/*End of nav*/
+
+/* Start Of Section all products*/
+.all_products{
+    width: 100%;
+    height: 450px;
+    background-image: url("../../assets/img/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.all_products p{
+    text-align: center;
+    font-size: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 85px;
+}
+.all_products a{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 45px;
+    background:blue;
+    color:white;
+    padding:10px;
+    text-decoration:none;
+}
+.all_products a:hover{
+    color:white;
+    background: #00009c;
+}
+
+/* End Of Section of all products*/
+
+/* Start of section new product */
+
+.slideshow_container{
+    width:100%;
+    position: relative;
+    margin: auto;
+
+}
+.myslides{
+    display:none;
+}
+.myslides img{
+    width: 100%;
+    height: 500px;
+}
+.dot{
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease
+}
+.dot_container{
+    margin-left: 50%;
+}
+.active {
+    background-color: #717171;
+  }
+
+
+  /* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @-webkit-keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+  
+  @keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+  
+/* End of section new product*/
+
+/*start of footer*/
+footer{
+    width: 100%;
+    height: 120px;
+    background: #f6f8f8;
+}
+footer .row{
+    margin-top: 50px;
+    margin-left: 45%;
+}
+footer .row span{
+    padding: 10px;
+    font-size: 20px;
+}
+footer .row span a{
+    color: #2e2f61;
+    text-decoration: none;
+}
+footer .row span a:hover{
+    color: #3337b3;
+}
+/*end of footer*/
+
+/*Start of Sign up form*/
+
+.container_signup{
+    position: relative;
+    padding: 20px;
+    text-align: center;
+    margin: 20px 160px;
+}
+.container_signup p{
+    color: gray;
+}
+.container_signup p a{
+    color: gray;
+    text-decoration: none;
+}
+.container_signup p a:hover{
+    color: rgb(29, 18, 179);
+    text-decoration: none;
+}
+.signup_form{
+    padding: 20px 50px;
+}
+#signup_btn{
+    width: 100%;
+    padding: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+/*End of sign up form*/
