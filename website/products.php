@@ -128,97 +128,132 @@ $obj = new website();
         <div class="dashboard-wrapper">
             <div class="dashboard-ecommerce">
                 <div class="container-fluid dashboard-content ">
-                <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <p>Stors</p>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <a href="javascript:add_store();" class="btn btn-danger" id="add_cat"><i class="fa fa-plus"></i>
-                                Create store</a>
-                        </div>
-                    </div>
-                    <div class="row" id="display_cat">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 container">
-                            <div class="img_cont">
-                                <img src="../assets/category_img/products.png" alt="category image" class="img-thumbnail cat_img">
-                            </div>
-                            <div class="content">
-                                
-                                <a href="products.php?data=<?php echo 0 ?>" class="">
-                                    <i class="fa fa-list"></i></a>
-                                <p>
-                                    All Producs
-                                </p>
+                <form class="form-inline form-search" name="Search" method="post" enctype="multipart/form-data">
 
-                            </div>
-                        </div>
-                        <?php $result = $obj->display_store();
-                            foreach ($result as $ydata) {?>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 container" data-id="<?=$ydata['id']?>">
-                                    <div class="img_cont">
-                                    <img src="stores_img/<?=$ydata['image']?>" alt="store image" class="img-thumbnail cat_img">
-                                    </div>
-                                    <div class="content">
-                                    <a href="javascript:delete_store(<?=$ydata['id']?>,'<?=$ydata['name']?>');" class="">
-                                    <i class="fa fa-trash"></i> </a>
-                                    <a href="javascript:edit_store(<?=$ydata['id']?>,'<?=$ydata['image']?>','<?=$ydata['name']?>','<?=$ydata['address']?>','<?=$ydata['mobile']?>','<?=$ydata['f_link']?>','<?=$ydata['g_link']?>');" class="">
-                                    <i class="fa fa-edit"></i></a>
-                                        <a href="products.php?data=<?=$ydata['id']?>" class="">
-                                        <i class="fa fa-list"></i></a>
-                                        <p><?=$ydata['name']?></p>
-                                    
-                                    </div>
-                                </div>
-                          <?php  }
-                        ?>
+                    <div class="form-group" style="display: grid">
+                        <?php if($_GET['data']!=0){?>
+                    <a href="javascript:add_product();" class="btn btn-danger" id="add_cat" style="margin-bottom: 10px;"><i class="fa fa-plus"></i>
+                                Add Product</a>
+                                
+                        <?php } ?>
+                        
+                        <input type="search" class="form-control search-text" id="search" placeholder="Search ..."
+                            name="text">
+
+
                     </div>
+                </form>
+                <div class="table-users">
+                        <table class="table table-hover dataTable">
+                            <thead>
+                                <tr>
+                                    <th>photo</th>
+                                    <th>Product Name</th>
+                                    <th>Product No.</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>delete<th>
+                                </tr>
+                            </thead>
+                            <tbody id="result_search">
+                                <?php
+                                $result_product = $obj->display_products($_GET['data']);
+                                if($result_product!= null){
+                                foreach ($result_product as $ydata) {?>
+                                    <tr data-id="<?php echo $ydata['id'] ?>">
+
+                                        <td class="img"><img src="../assets/product_img/<?=$ydata['photo']?>" alt="personal photo" class="img-thumbnail rounded-circle product_img" id="personal-photo"></td>
+                                        <td class="name"><?=$ydata['name'];?></td>
+                                        <td class="number"><?=$ydata['number'];?></td>
+                                        <td class="cat_name" data='<?=$ydata['cat_id']?>'><?php 
+                                            $result = $obj->get_category_name($ydata['cat_id']);
+                                            foreach($result as $row){
+                                                echo $row['name'];
+                                            }
+                                        ?></td>
+                                        <td class="gold_weight" hidden><?=$ydata['gold_weight'];?></td>
+                                        <td class="gold_kerat" hidden><?=$ydata['gold_kerat'];?></td>
+                                        <td class="manuf" hidden><?=$ydata['manuf'];?></td>
+                                        <td><?=($ydata['gold_weight']*$obj->get_price($ydata['gold_kerat'])+$ydata['manuf']); ?> $</td>
+                                        <td>
+                                            <a href="javascript:delete_product(<?php echo $ydata['id'] ?>);" class="btn btn-danger">delete</a>
+                                            <a href="javascript:edit_product(<?php echo $ydata['id'] ?>);" class="btn btn-info">edit</a>
+                                            </td>
+
+                                   </tr>
+                                  <?php }
+                                  }else{?>
+                                      <tr><?php echo "No Products";?></tr>
+                                 <?php }?>
+                            </tbody>
+                        </table>
+                </div>
+
                 </div>
             </div>
         </div>   
         
             <!-- Add Strore -->
-            <div class="modal fade" id="create_store" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal fade" id="add_product" tabindex="-1" role="basic" aria-hidden="true">
                 <div class="modal-dialog" style=" height: 80% !important;padding-top:1%;">
-                    <div class="modal-content" style=" height: 590px !important;overflow:visible;">
+                    <div class="modal-content" style=" height: 560px !important;overflow:visible;">
 
                         <!-- Modal Header -->
                         <div class="modal-header" style="padding-bottom: 27px;">
-                            <h4 class="modal-title"> <i class="fa fa-plus"></i> Create Store</h4>
+                            <h4 class="modal-title"> <i class="fa fa-plus"></i> Add Product</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
 
                         <!-- Modal body -->
                         <div class="modal-body">
-                            <form id="target" action="" method="post">
+                            <form id="target" action="" method="post" class="form-inline">
                                 <fieldset>
 
                                     <div class="form-group">
-                                        <label class="control-label">Store Name :</label>
-                                        <input type="text" name="store_name" id="store_name" placeholder="Store Name" class="form-control" required autocomplete="off">
+                                        <label class="control-label">Product Name :</label>
+                                        <input type="text" name="product_name" id="product_name" placeholder="Product Name" style="width: 19rem;margin-left: 21px;" class="form-control" required autocomplete="off">
                                     </div>
+                                    <input type="hidden" id="store_id" name="store_id" value="<?=$_GET['data']?>">
                                     <div class="form-group">
-                                        <label class="control-label">Store Address :</label>
-                                        <input type="text" name="address" id="address" placeholder="Store Address" class="form-control" required autocomplete="off">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label">Mobile No:</label>
-                                        <input type="tel" name="mobile" id="mobile" placeholder="Mobile Number" class="form-control" pattern="[0-9]{10}" required autocomplete="off">
+                                        <label class="control-label">Product No:</label>
+                                        <input type="text" name="number" id="number" placeholder="Product Number" style="margin-left: 48px;width: 19rem;" class="form-control" pattern="[0-9]{10}" required autocomplete="off">
                                     </div>
 
-                                    <div class="custom-file">
+                                    <div class="custom-file form-group">
                                         <input type="file" class="custom-file-input" id="file" name="file" required autocomplete="off">
                                         <label class="custom-file-label" for="customFile">Choose Image</label>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label" style="margin-top: 10px;">Facebook Link:</label>
-                                        <input type="url" name="f_link" id="f_link" placeholder="Facebook Link" class="form-control" required autocomplete="off">
+                                        <label class="control-label" style="margin-top: 10px;">Gold Weight:</label>
+                                        <input type="number" name="weight" id="weight" placeholder="Gold weight" style="width: 18rem;margin-left: 49px;" class="form-control" step="0.01" required autocomplete="off">
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label">Google Link:</label>
-                                        <input type="url" name="g_link" id="g_link" placeholder="Google Link" class="form-control"  required autocomplete="off">
+                                        <label class="control-label">Gold Manufactor:</label>
+                                        <input type="number" name="manuf" id="manuf" placeholder="Gold Manufactor" style="width: 18rem;" class="form-control" step="0.01"  required autocomplete="off">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="gold_kerat">Choose Gold Kerat:</label>
+                                        <select class="form-control" name="gold_kerat" id="gold_kerat" required>
+                                            <option value="24">24</option>
+                                            <option value="22">22</option>
+                                            <option value="21">21</option>
+                                            <option value="18">18</option>
+                                            <option value="14">14</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="gold_cat">Gold Category:</label>
+                                        <select class="form-control" id="gold_cat" name="gold_cat" style=" margin-left: 47px;" required>
+                                            <?php $result = $obj->category_names();
+                                            foreach($result as $cat) {?>
+                                            <option value="<?=$cat['id']?>"><?=$cat['name']?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+
                                     <div class="btn_group">
-                                        <input type="submit" name="add" class="btn btn-primary" value="Create Store">
+                                        <input type="submit" name="add" class="btn btn-primary" value="Add Product">
 
                                         <button type="button" class="btn btn-cont" data-dismiss="modal">Cancel</button>
                                     </div>
@@ -233,13 +268,13 @@ $obj = new website();
 
             <!-- Delete OF Category-->
             <!-- The Modal -->
-            <div class="modal fade" id="store_delete" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal fade" id="product_delete" tabindex="-1" role="basic" aria-hidden="true">
                 <div class="modal-dialog" style=" height: 80% !important;padding-top:10%;">
                     <div class="modal-content" style=" height: 250px !important;overflow:visible;">
 
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title"> <i class="fa fa-trash"></i> Delete Store</h4>
+                            <h4 class="modal-title"> <i class="fa fa-trash"></i> Delete Product</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
 
@@ -248,12 +283,11 @@ $obj = new website();
                             <form name="formAdd" id="store_form_delete" method="post" class="form-horizontal" enctype="multipart/form-data">
                                 <fieldset>
 
-                                    <input type="hidden" class="store_id_del" name="store_id_del" id="store_id_del" value="">
+                                    <input type="hidden" class="product_id_del" name="product_id_del" id="product_id_del" value="">
 
 
                                     <div class="form-group">
-                                        <label class="col-lg-6 control-label">Are You Sure To Delete <span id="store_name_del"></span>
-                                            ?</label>
+                                        <label class="col-lg-6 control-label">Are You Sure To Delete Product ?</label>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-lg-6 col-lg-offset-2">
@@ -273,54 +307,71 @@ $obj = new website();
                 </div>
             </div>
 
-                        <!-- Edit Category-->
+                        <!-- Edit product-->
 
-            <div class="modal fade" id="edit_store" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal fade" id="edit_product" tabindex="-1" role="basic" aria-hidden="true">
                 <div class="modal-dialog" style=" height: 80% !important;">
                     <div class="modal-content" style=" height: 650px !important;overflow:visible;">
 
                         <!-- Modal Header -->
                         <div class="modal-header" style="padding-bottom: 27px;">
-                            <h4 class="modal-title"> <i class="fa fa-edit"></i> Edit Category</h4>
+                            <h4 class="modal-title"> <i class="fa fa-edit"></i> Edit Product</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
 
                         <!-- Modal body -->
                         <div class="modal-body">
-                            <form id="edit_form" action="" method="post">
+                        <form id="edit_product_form" action="" method="post" class="form-inline">
                                 <fieldset>
-                                    <input type="hidden" id="store_id" name="store_id" value="">
-                                    <input type="hidden" id="flag" name="flag" value="1">
-                                    <div class="form-group">
-                                        <label class="control-label">Store Name :</label>
-                                        <input type="text" name="store_name" id="edit_store_name" placeholder="Store Name" class="form-control" required autocomplete="off">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label">Store Address :</label>
-                                        <input type="text" name="address" id="edit_address" placeholder="Store Address" class="form-control" required autocomplete="off">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label">Mobile No:</label>
-                                        <input type="tel" name="mobile" id="edit_mobile" placeholder="Mobile Number" class="form-control" pattern="[0-9]{10}" required autocomplete="off">
-                                    </div>
 
-                                    <span>store image </span>
-                                    <img src="" id="pic_store" alt="store photo" class="img-thumbnail pic_cat">
-                                    <div class="custom-file">
-
-                                        <input type="file" class="custom-file-input" id="edit_file" name="file">
+                                    <div class="form-group">
+                                        <label class="control-label">Product Name :</label>
+                                        <input type="text" name="product_name" id="edit_product_name" placeholder="Product Name" style="width: 19rem;margin-left: 21px;" class="form-control" required autocomplete="off">
+                                    </div>
+                                    <input type="hidden" id="edit_store_id" name="store_id" value="<?=$_GET['data']?>">
+                                    <input type="hidden" id="edit_product_id" name="product_id" value="">
+                                    <div class="form-group">
+                                        <label class="control-label">Product No:</label>
+                                        <input type="text" name="number" id="edit_number" placeholder="Product Number" style="margin-left: 48px;width: 19rem;" class="form-control" pattern="[0-9]{10}" required autocomplete="off">
+                                    </div>
+                                    <span>category image </span>
+                                    <img src="" id="pic_product" alt="product photo" class="img-thumbnail pic_cat">
+                                   <input type="hidden" id="flag" value="1" name="flag">
+                                    <div class="custom-file form-group">
+                                        <input type="file" class="custom-file-input" id="edit_file" name="file" autocomplete="off">
                                         <label class="custom-file-label" for="customFile">Choose Image</label>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label" style="margin-top: 10px;">Facebook Link:</label>
-                                        <input type="url" name="f_link" id="edit_f_link" placeholder="Facebook Link" class="form-control" required autocomplete="off">
+                                        <label class="control-label" style="margin-top: 10px;">Gold Weight:</label>
+                                        <input type="number" name="weight" id="edit_weight" placeholder="Gold weight" style="width: 18rem;margin-left: 49px;" class="form-control" step="0.01" required autocomplete="off">
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label">Google Link:</label>
-                                        <input type="url" name="g_link" id="edit_g_link" placeholder="Google Link" class="form-control"  required autocomplete="off">
+                                        <label class="control-label">Gold Manufactor:</label>
+                                        <input type="number" name="manuf" id="edit_manuf" placeholder="Gold Manufactor" style="width: 18rem;" class="form-control" step="0.01"  required autocomplete="off">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="gold_kerat">Choose Gold Kerat:</label>
+                                        <select class="form-control" name="gold_kerat" id="edit_gold_kerat" required>
+                                            <option value="24">24</option>
+                                            <option value="22">22</option>
+                                            <option value="21">21</option>
+                                            <option value="18">18</option>
+                                            <option value="14">14</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="gold_cat">Gold Category:</label>
+                                        <select class="form-control" id="edit_gold_cat" name="gold_cat" style=" margin-left: 47px;" required>
+                                            <?php $result = $obj->category_names();
+                                            foreach($result as $cat) {?>
+                                            <option value="<?=$cat['id']?>"><?=$cat['name']?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+
                                     <div class="btn_group">
-                                        <input type="submit" name="add" class="btn btn-primary" value="edit Store">
+                                        <input type="submit" name="add" class="btn btn-primary" value="Edit Product">
 
                                         <button type="button" class="btn btn-cont" data-dismiss="modal">Cancel</button>
                                     </div>
@@ -378,11 +429,50 @@ $obj = new website();
     <script src="../assets/libs/js/dashboard-ecommerce.js"></script>
 </body>
 <script>
+
+/**to display popup edit product */
+    
+    function edit_product(id){
+        $('#edit_product_name').val($('tr[data-id="'+id+'"]').children('.name').text());
+        $('#edit_weight').val($('tr[data-id="'+id+'"]').children('.gold_weight').text());
+        $('#edit_manuf').val($('tr[data-id="'+id+'"]').children('.manuf').text());
+        $('#edit_number').val($('tr[data-id="'+id+'"]').children('.number').text());
+        $('#edit_gold_kerat').val($('tr[data-id="'+id+'"]').children('.gold_kerat').text());
+        $('#edit_gold_cat').val($('tr[data-id="'+id+'"]').children('.cat_name').attr('data'));
+        $('#edit_file').val('');
+        $('#edit_product_id').val($('tr[data-id="'+id+'"]').attr('data-id'));
+        $('#pic_product').attr('src',$('tr[data-id="'+id+'"]').find('.product_img').attr('src'));
+        $('#flag').val('1');
+        $('tr').removeClass('select_product');
+        $('tr[data-id="' + $('tr[data-id="'+id+'"]').attr('data-id') + '"]').addClass('select_product');
+        $('#edit_product').modal();
+    }
+
+    $('#search').keyup(function () {
+            var text = $(this).val();
+            let id = $('#store_id').val();
+            $('#result_search').html('');
+            $.ajax({
+                url: "core/search_product.php",
+                type: "POST",
+                async: false,
+                data: { 
+                    "search": text ,
+                    "id" : id
+                    },
+                success: function (data) {
+                    //alert(data);
+                    $('tbody').html(data);
+                }
+            })
+
+        });
+
     $('#target').submit(function(e){
         e.preventDefault();
             var formdata = new FormData(this);
             $.ajax({
-                url: "core/add_store.php",
+                url: "core/add_product.php",
                 type: "POST",
                 async: false,
                 data: formdata,
@@ -390,18 +480,18 @@ $obj = new website();
                 cache: false,
                 processData: false,
                 success: function (data) {
-                    $('#create_store').modal('hide');
-                   $('#display_cat').html('');
-                   $('#display_cat').html(data);
+                   $('#add_product').modal('hide');
+                   $('#result_search').html('');
+                   $('#result_search').html(data);
 
                 }
             });
     });
 
     $('#submit_delete').click(function(e){
-        let id = $('#store_id_del').val();
+        let id = $('#product_id_del').val();
         $.ajax({
-                url: "core/delete_store.php",
+                url: "core/delete_product.php",
                 type: "POST",
                 async: false,
                 data: {
@@ -409,17 +499,17 @@ $obj = new website();
                     "id": id
                 },
                 success: function (data) {
-                    $('.select_store').closest('div').remove();
+                    $('.select_product').closest('tr').remove();
                 }
             })
     });
 
-    $('#edit_form').submit(function (e) {
+    $('#edit_product_form').submit(function (e) {
             e.preventDefault();
-            let id_store = $('#store_id').val();
+            let id = $('#edit_product_id').val();
             var formdata = new FormData(this);
             $.ajax({
-                url: "core/edit_store.php",
+                url: "core/edit_product.php",
                 type: "POST",
                 async: false,
                 data: formdata,
@@ -427,52 +517,37 @@ $obj = new website();
                 cache: false,
                 processData: false,
                 success: function (data) {
-                    $('#edit_store').modal('hide');
-                    $('.select_store').html('');
-                    $('.select_store').html(data);
-                    $('div[data-id="' + id_store + '"]').removeClass('select_store');
+                    $('#edit_product').modal('hide');
+                    $('.select_product').html('');
+                    $('.select_product').html(data);
+                    $('tr[data-id="' + id + '"]').removeClass('select_product');
                 }
             });
-        });
+    });
 
     $('input[id="edit_file"]').on('change', function() {
             $('#flag').val('2');
         });
 
-    function edit_store(id,image,name,address,mobile,f_link,g_link){
-        $('div').removeClass('select_store');
-        $('div[data-id="' + id + '"]').addClass('select_store');
-        $('#store_id').val(id);
-        $('#edit_store_name').val(name);
-        $('#edit_address').val(address);
-        $('#edit_mobile').val(mobile);
-        $('#edit_f_link').val(f_link);
-        $('#edit_g_link').val(g_link);
-        $('#flag').val('1')
-        $('#pic_store').attr('src','stores_img/'+image);
-        $('#edit_store').modal();
-
-
-    }
-
-    function delete_store(id,name){
-        $('div').removeClass('select_store');
-        $('div[data-id="' + id + '"]').addClass('select_store');
-        $('#store_id_del').val(id);
-        $('#store_name_del').html(name);
-        $('#store_delete').modal();
+    function delete_product(id){
+        $('tr').removeClass('select_product');
+        $('tr[data-id="' + id + '"]').addClass('select_product');
+        //$('tr[data-id="' + id + '"]').attr('onclick','');
+        $('#product_id_del').val(id);
+        $('#product_delete').modal();
 
 
     } 
 
-    function add_store(){
-        $('#store_name').val('');
-        $('#address').val('');
-        $('#mobile').val('');
-        $('#f_link').val('');
-        $('#g_link').val('');
+    function add_product(){
+        $('#product_name').val('');
+        $('#weight').val('');
+        $('#manuf').val('');
+        $('#number').val('');
+        $('#gold_kerat').val('');
+        $('#gold_cat').val('');
         $('#file').val('');
-        $('#create_store').modal();
+        $('#add_product').modal();
     }
    
 </script>

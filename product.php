@@ -189,6 +189,7 @@ $obj = new admin();
                     </div>
                 </div>
             </div>
+        </div>
 
 
             <!-- The Modal -->

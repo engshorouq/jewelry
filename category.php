@@ -155,7 +155,7 @@ include_once("core/admin.class.php");
                         </div>
                     </div>
                     <div class="row" id="display_cat">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 container" data-id="<?php echo $ydata['id']?>">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 container">
                             <div class="img_cont">
                                 <img src="assets/category_img/products.png" alt="category image" class="img-thumbnail cat_img">
                             </div>
@@ -438,7 +438,7 @@ include_once("core/admin.class.php");
             })
         });
 
-        $('#edit_file').click(function (e) {
+        $('input[id="edit_file"]').on('change', function() {
             $('#flag').val('2');
         });
 

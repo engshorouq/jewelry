@@ -232,3 +232,27 @@ i.fa-camera {
       margin-left: 0px;
       margin-right: 0px;
   }
+
+  #add_product .form-group{
+    margin-bottom: 15px;
+  }
+  #add_product .form-group input{
+    margin-left: 10px;
+  }
+  #add_product .form-group select{
+    margin-left: 10px;
+    width: 275px; 
+  }
+  #edit_product .form-group{
+    margin-bottom: 15px;
+  }
+  #edit_product .form-group input{
+    margin-left: 10px;
+  }
+  #edit_product .form-group select{
+    margin-left: 10px;
+    width: 275px; 
+  }
+  tr:hover{
+      cursor: pointer;
+  }
