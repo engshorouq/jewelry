@@ -93,6 +93,20 @@ class website
         }
         
     }
+
+    public function display_withdraw($id){
+        $result = mysqli_query($this->conn,"select * from withdraw where saller_id=$id order by id desc");
+        if(mysqli_num_rows($result)>0){
+            $data = array();
+            while($row = mysqli_fetch_array($result)){
+                $data[]=$row;
+            }
+            return $data;
+        }else{
+            return null;
+        }
+        
+    }
 }
 
 

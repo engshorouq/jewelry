@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 27 ديسمبر 2018 الساعة 20:43
+-- Generation Time: 31 ديسمبر 2018 الساعة 01:45
 -- إصدار الخادم: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -134,11 +134,30 @@ CREATE TABLE `product` (
   `name` varchar(500) NOT NULL,
   `photo` varchar(500) NOT NULL,
   `cat_id` int(11) NOT NULL,
-  `gold_weight` int(11) NOT NULL,
+  `gold_weight` float NOT NULL,
   `gold_kerat` int(11) NOT NULL,
-  `manuf` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL
+  `manuf` float NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `number` varchar(500) NOT NULL,
+  `number_buy` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `product`
+--
+
+INSERT INTO `product` (`id`, `name`, `photo`, `cat_id`, `gold_weight`, `gold_kerat`, `manuf`, `store_id`, `number`, `number_buy`) VALUES
+(1, 'product 1', '5c284ccec5a90301218425405.png', 2, 2.5, 22, 1.55, 2, '1122334455', 0),
+(2, 'product2', '5c285060742e2301218580805.png', 1, 3.3, 21, 2.8, 2, '1234567895', 0),
+(3, 'product3', '5c28524d1e87c301218062106.png', 2, 4.7, 22, 2.1, 2, '7788994455', 0),
+(5, 'product22', '5c28536934135301218110506.png', 1, 4.6, 24, 2.1, 2, '1122445577', 0),
+(6, 'product5', '5c2853f0d276c301218132006.png', 1, 2.11, 24, 1.2, 2, '1231231234', 0),
+(7, 'new product', '5c285500bd5bc301218175206.jpg', 1, 3.55, 21, 2.4, 2, '9876543213', 0),
+(8, 'final one', '5c28bb9b0723f301218353901.png', 1, 1.15, 24, 1.3, 2, '4567891235', 0),
+(9, 'product', '5c29332b8911d301218054710.png', 1, 2, 24, 1.9, 2, '1478529623', 0),
+(10, 'product full', '5c293f6e8e543301218580610.jpg', 2, 2.5, 24, 1.4, 2, '1234565478', 0),
+(11, 'final product test', '5c293fa7bd06a301218590310.jpg', 2, 2.3, 22, 1.1, 2, '1234567895', 0),
+(12, 'finall ', '5c29401e9bc61301218010211.png', 1, 5.55, 18, 2.88, 2, '1472583698', 0);
 
 -- --------------------------------------------------------
 
@@ -155,6 +174,31 @@ CREATE TABLE `replay` (
   `status` varchar(500) NOT NULL DEFAULT 'unread',
   `img` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- بنية الجدول `stores`
+--
+
+CREATE TABLE `stores` (
+  `id` int(11) NOT NULL,
+  `name` varchar(500) NOT NULL,
+  `address` varchar(500) NOT NULL,
+  `mobile` varchar(500) NOT NULL,
+  `image` varchar(500) NOT NULL,
+  `f_link` varchar(500) NOT NULL,
+  `g_link` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `stores`
+--
+
+INSERT INTO `stores` (`id`, `name`, `address`, `mobile`, `image`, `f_link`, `g_link`) VALUES
+(2, 'store 11', 'store 11', '0599717796', '5c27bf1042193291218380807.jpg', 'https://www.google.con', 'https://www.google.con'),
+(3, 'store22', 'store222', '0599717793', '5c27bff114e5e291218415307.jpg', 'https://www.google.comm', 'https://www.google.comm'),
+(5, 'daban', 'al remal ', '0599717795', '5c27ba042705b291218163607.jpg', 'https://www.google.com', 'https://www.google.com');
 
 -- --------------------------------------------------------
 
@@ -179,6 +223,32 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `type`, `photo`) VALUES
 (6, 'shrooq', 'shrooq', 'shrooq@shrooq', 'shrooq', 'customer', 'default_user.png'),
 (7, 'noor', 'saad', 'noor@noor', 'noor', 'saller', 'default_user.png');
+
+-- --------------------------------------------------------
+
+--
+-- بنية الجدول `withdraw`
+--
+
+CREATE TABLE `withdraw` (
+  `id` int(11) NOT NULL,
+  `saller_id` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `description` tinytext NOT NULL,
+  `date` datetime NOT NULL,
+  `status` varchar(500) NOT NULL DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `withdraw`
+--
+
+INSERT INTO `withdraw` (`id`, `saller_id`, `amount`, `description`, `date`, `status`) VALUES
+(1, 7, 200, 'first withdraw', '2018-12-31 12:38:46', 'accept'),
+(2, 7, 500, 'second withdraw', '2018-12-31 01:08:25', 'pending'),
+(3, 7, 800, 'test', '2018-12-31 01:09:33', 'pending'),
+(4, 7, 200, 'test', '2018-12-31 01:11:29', 'pending'),
+(5, 7, 1000, 'final test', '2018-12-31 01:12:03', 'pending');
 
 --
 -- Indexes for dumped tables
@@ -227,9 +297,21 @@ ALTER TABLE `replay`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `stores`
+--
+ALTER TABLE `stores`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `withdraw`
+--
+ALTER TABLE `withdraw`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -270,7 +352,7 @@ ALTER TABLE `price_gold`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `replay`
@@ -279,10 +361,22 @@ ALTER TABLE `replay`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `stores`
+--
+ALTER TABLE `stores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `withdraw`
+--
+ALTER TABLE `withdraw`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
