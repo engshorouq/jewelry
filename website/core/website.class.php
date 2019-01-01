@@ -107,8 +107,42 @@ class website
         }
         
     }
+
+//display store name based on store id
+public function get_store_name($store_id)
+    {
+        $result_store = mysqli_query($this->conn, "select name from stores where id=$store_id");
+        while ($name = mysqli_fetch_array($result_store)) {
+            $store_name = $name['name'];
+        }
+        return $store_name;
+    }
+//display product based on product id
+public function product_information($product_id)
+    {
+        $result = mysqli_query($this->conn, "select * from product where id=$product_id");
+        $data=array();
+        while ($row = mysqli_fetch_array($result)) {
+            $data[]=$row;
+        }
+        return $data;
+    }
+
+    //display user information based on user id
+ public function user_information($id){
+        $result_user=mysqli_query($this->conn,"select * from users where id=$id");
+        if(mysqli_num_rows($result_user)>0){
+            $data=array();
+            while($row=mysqli_fetch_array($result_user)){
+                $data[]=$row;
+            }
+            return $data;
+        }else{
+            return null;
+        }
+        
+    }
+
 }
-
-
 
 ?>

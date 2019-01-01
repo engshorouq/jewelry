@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 31 ديسمبر 2018 الساعة 01:45
+-- Generation Time: 01 يناير 2019 الساعة 10:47
 -- إصدار الخادم: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -162,6 +162,31 @@ INSERT INTO `product` (`id`, `name`, `photo`, `cat_id`, `gold_weight`, `gold_ker
 -- --------------------------------------------------------
 
 --
+-- بنية الجدول `purchase`
+--
+
+CREATE TABLE `purchase` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `start_event` datetime NOT NULL,
+  `price` int(11) NOT NULL,
+  `end_event` datetime NOT NULL,
+  `title` varchar(500) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `purchase`
+--
+
+INSERT INTO `purchase` (`id`, `product_id`, `start_event`, `price`, `end_event`, `title`, `user_id`) VALUES
+(1, 11, '2018-12-31 04:17:11', 1500, '2018-12-31 04:17:11', 'test product', 6),
+(2, 12, '2019-01-01 07:27:13', 1200, '2019-01-01 07:27:13', 'product 2', 6),
+(3, 12, '2018-12-31 04:17:11', 2000, '2018-12-31 04:17:11', 'product duplicate', 6);
+
+-- --------------------------------------------------------
+
+--
 -- بنية الجدول `replay`
 --
 
@@ -213,16 +238,17 @@ CREATE TABLE `users` (
   `email` varchar(200) NOT NULL,
   `password` varchar(500) NOT NULL,
   `type` varchar(500) NOT NULL,
-  `photo` varchar(500) NOT NULL DEFAULT 'default_user.png'
+  `photo` varchar(500) NOT NULL DEFAULT 'default_user.png',
+  `phone_number` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- إرجاع أو استيراد بيانات الجدول `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `type`, `photo`) VALUES
-(6, 'shrooq', 'shrooq', 'shrooq@shrooq', 'shrooq', 'customer', 'default_user.png'),
-(7, 'noor', 'saad', 'noor@noor', 'noor', 'saller', 'default_user.png');
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `type`, `photo`, `phone_number`) VALUES
+(6, 'shrooq', 'shrooq', 'shrooq@shrooq', 'shrooq', 'customer', 'default_user.png', '0599777777'),
+(7, 'noor', 'saad', 'noor@noor', 'noor', 'saller', 'default_user.png', '0');
 
 -- --------------------------------------------------------
 
@@ -291,6 +317,12 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `purchase`
+--
+ALTER TABLE `purchase`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `replay`
 --
 ALTER TABLE `replay`
@@ -353,6 +385,12 @@ ALTER TABLE `price_gold`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `purchase`
+--
+ALTER TABLE `purchase`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `replay`

@@ -256,3 +256,34 @@ i.fa-camera {
   tr:hover{
       cursor: pointer;
   }
+  /*the style of dialog*/
+  #dialog-corse{
+    padding: 25px;
+    border: 2px solid #80808052;
+    border-radius: 8px;
+    left: 32rem;
+    width: 555px;
+    top:100px;
+  }
+  
+  #dialog-corse img{
+    width: 45px;
+    height: 45px;
+  }
+  #dialog-corse .product{
+    border-right: 1px solid #80808052;
+  }
+  #dialog-corse h3{
+    border-bottom: 1px solid #d6d6d6;
+    padding-bottom: 12px;
+  }
+  #dialog-corse .title1{
+    font-size: 15px;
+    margin: 10px;
+    color: #33343c;
+    font-weight: bold;
+  }
+  #dialog-corse .btn{
+    float: right;
+    margin-top: 6rem;
+  }

@@ -104,7 +104,7 @@ class admin
     }
     public function get_store_name($store_id)
     {
-        $result_store = mysqli_query($this->conn, "select name from store where id=$store_id");
+        $result_store = mysqli_query($this->conn, "select name from stores where id=$store_id");
         while ($name = mysqli_fetch_array($result_store)) {
             $store_name = $name['name'];
         }
