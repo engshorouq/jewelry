@@ -57,6 +57,9 @@
                 <input type="email" class="form-control" name="email" id="email" placeholder="Email Address" required autocomplete="off">
             </div>
             <div class="form-group">
+                <input type="number" class="form-control" name="number" id="number" placeholder="Phone Number Start With 05-" pattern="[0-9]{10}" required autocomplete="off">
+            </div>
+            <div class="form-group">
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password" required autocomplete="off">
             </div>
             <div class="form-group">
