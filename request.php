@@ -170,7 +170,7 @@ $obj = new admin();
                             ?>
                             <a href="javascript:display_messages(<?=$data['id'];?>);" class="display_link" id="<?=$counter++;?>">
                                 <div class="row users" data-id="<?=$data['id'];?>">
-                                    <img src="assets/img/<?=$data['photo'];?>" class="img-thumbnail rounded-circle personal-photo" alt="photo of user">
+                                    <img src="assets/users_img/<?=$data['photo'];?>" class="img-thumbnail rounded-circle personal-photo" alt="photo of user">
                                     <span class="name_user"><?=$data['first_name'];?></span>
                                     <?php $msg=$obj->users_contact($data['id']); ?>
                                     <div class="last_msg <?=$msg[0]['status'];?>"><?=$msg[0]['msg'];?></div>
@@ -265,6 +265,16 @@ $obj = new admin();
   $("input[type='file']").trigger('click');
 });
 
+//to scroll to the last message
+function scroll(){
+    $('.content_msg').children().removeAttr('id');
+    $('.content_msg').children().last().attr('id','last');
+    if(document.getElementById('last')!=undefined){
+        document.getElementById('last').scrollIntoView();
+    }
+    
+}
+
 $('input[type="file"]').on('change', function() {
     var file_data = $('#file_photo').prop('files')[0];
     var id = $('#user_id').val();   
@@ -281,7 +291,8 @@ $('input[type="file"]').on('change', function() {
                 processData: false,
                 success: function (data) {
                     $('.content_msg').html('');
-                $('.content_msg').html(data); 
+                    $('.content_msg').html(data); 
+                    scroll();
                 }
             });
 
@@ -299,6 +310,7 @@ setInterval(function(){
             success: function(data){
                 $('.content_msg').html('');
                 $('.content_msg').html(data); 
+                scroll();
             }
     });
     
@@ -319,6 +331,7 @@ $('#rep_div').submit(function(e){
                     $('#comment').val('');
                     $('.content_msg').html('');
                     $('.content_msg').html(data);
+                    scroll();
                 }
             });
 });
@@ -343,6 +356,7 @@ window.onload = function(){
             success: function(data){
                 $('.content_msg').html('');
                 $('.content_msg').html(data); 
+                scroll();
             }
     });
 }
@@ -363,7 +377,8 @@ function display_messages(id){
             },
             success: function(data){
                 $('.content_msg').html('');
-                $('.content_msg').html(data); 
+                $('.content_msg').html(data);
+                scroll(); 
             }
     });
 }

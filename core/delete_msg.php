@@ -1,6 +1,10 @@
-<?php 
+<?php
 $conn = mysqli_connect("localhost", "root", "", "jewelry");
-$user_id=$_POST['user_id'];
-mysqli_query($conn,"delete from contact where user_id=$user_id");
-mysqli_query($conn,"delete from replay where user_id=$user_id");
+$result = mysqli_query($conn,"SELECT * FROM delete_conversation WHERE type='replay' and user_id=".$_POST['user_id']); 
+$dateTime = date("Y-m-d h:i:sa", time());
+if(mysqli_num_rows($result)>0){
+    mysqli_query($conn,"UPDATE delete_conversation SET date='$dateTime' WHERE type='replay' and user_id=".$_POST['user_id']);
+}else{
+    mysqli_query($conn,"INSERT INTO delete_conversation (user_id,date,type) VALUES (".$_POST['user_id'].",'$dateTime','replay')");
+}
 ?>

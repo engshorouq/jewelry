@@ -59,7 +59,7 @@ $obj = new website();
                                     <div class="notification-title"> Notification</div>
                                     <div class="notification-listt">
                                         <div class="list-group">
-                                        <a href='request.php?data=0' class="list-group-item list-group-item-action">
+                                        <a href='contact.php' class="list-group-item list-group-item-action">
                                                 Notifications
                                             </a>
                                             

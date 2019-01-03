@@ -143,6 +143,20 @@ public function product_information($product_id)
         
     }
 
+    //get the date of the user delete the messages
+    public function get_date($user_id,$type){
+        $result = mysqli_query($this->conn,"SELECT date FROM delete_conversation WHERE user_id=$user_id and type='$type'");
+        if(mysqli_num_rows($result)>0){
+            $data=array();
+            while($row = mysqli_fetch_array($result)){
+                $data[]=$row;
+            }
+            return $data;
+        }else{
+            return null;
+        }
+    }
+
 }
 
 ?>
