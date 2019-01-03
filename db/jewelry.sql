@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 01 يناير 2019 الساعة 10:47
+-- Generation Time: 03 يناير 2019 الساعة 11:40
 -- إصدار الخادم: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -96,8 +96,58 @@ CREATE TABLE `contact` (
   `date` datetime NOT NULL,
   `type` varchar(500) NOT NULL DEFAULT 'request',
   `status` varchar(500) NOT NULL DEFAULT 'unread',
-  `img` varchar(500) NOT NULL
+  `img` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `contact`
+--
+
+INSERT INTO `contact` (`id`, `user_id`, `msg`, `date`, `type`, `status`, `img`) VALUES
+(1, 7, 'hi', '2019-01-02 03:07:03', 'request', 'read', ''),
+(2, 7, 'fine', '2019-01-02 03:13:58', 'request', 'read', NULL),
+(3, 7, 'what about you\r\n', '2019-01-02 03:19:37', 'request', 'read', NULL),
+(4, 7, '', '2019-01-02 03:23:52', 'request', 'read', '5c2cc97869c07020119235203.jpg'),
+(5, 7, '', '2019-01-02 03:25:12', 'request', 'read', '5c2cc9c8c18b3020119251203.jpg'),
+(6, 7, 'i dont understand', '2019-01-02 03:30:13', 'request', 'read', NULL),
+(7, 7, '', '2019-01-02 03:34:20', 'request', 'read', '5c2ccbeca127c020119342003.jpg'),
+(8, 7, '', '2019-01-02 03:39:54', 'request', 'read', '5c2ccd3ae8794020119395403.png'),
+(9, 7, 'hi', '2019-01-02 03:40:47', 'request', 'read', NULL),
+(10, 7, 'how are you\r\n', '2019-01-02 06:44:43', 'request', 'read', NULL),
+(11, 7, 'mmmm\r\n', '2019-01-02 06:54:38', 'request', 'read', NULL),
+(12, 7, 'ok', '2019-01-02 06:55:34', 'request', 'read', NULL),
+(13, 7, 'mmmm\r\n', '2019-01-02 07:16:10', 'request', 'read', NULL),
+(14, 7, 'jkhfdjd', '2019-01-02 07:16:26', 'request', 'read', NULL),
+(15, 7, 'ÙƒØªÙŠØ± Ù…Ù†ÙŠØ­Ø©', '2019-01-02 08:05:05', 'request', 'read', NULL),
+(16, 7, 'Ù…Ù…Ù… Ø§ÙˆÙƒ\r\n', '2019-01-02 08:05:30', 'request', 'read', NULL),
+(17, 7, 'ok', '2019-01-03 06:35:40', 'request', 'read', NULL),
+(18, 7, 'hi', '2019-01-03 08:12:13', 'request', 'read', NULL),
+(19, 7, 'how are you', '2019-01-03 08:18:33', 'request', 'read', NULL),
+(20, 7, 'how are you\r\n', '2019-01-03 08:54:20', 'request', 'read', NULL),
+(21, 7, 'hhhh', '2019-01-03 10:27:04', 'request', 'read', NULL),
+(23, 7, '', '2019-01-03 11:05:33', 'request', 'read', '5c2dde6dbd5cd030119053311.jpg'),
+(24, 7, 'ok', '2019-01-03 11:21:11', 'request', 'read', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- بنية الجدول `delete_conversation`
+--
+
+CREATE TABLE `delete_conversation` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  `type` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `delete_conversation`
+--
+
+INSERT INTO `delete_conversation` (`id`, `user_id`, `date`, `type`) VALUES
+(1, 7, '2019-01-03 08:44:12', 'request'),
+(2, 7, '2019-01-03 11:13:17', 'replay');
 
 -- --------------------------------------------------------
 
@@ -200,6 +250,22 @@ CREATE TABLE `replay` (
   `img` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- إرجاع أو استيراد بيانات الجدول `replay`
+--
+
+INSERT INTO `replay` (`id`, `user_id`, `msg`, `date`, `type`, `status`, `img`) VALUES
+(1, 7, 'hi', '2019-01-02 03:10:37', 'relpay', 'read', NULL),
+(2, 7, 'ok no problem', '2019-01-02 03:29:23', 'relpay', 'read', NULL),
+(3, 7, NULL, '2019-01-02 03:29:36', 'relpay', 'read', '5c2ccad0e1cbf020119293603.png'),
+(4, 7, 'ok no problem', '2019-01-02 06:59:40', 'relpay', 'read', NULL),
+(5, 7, 'nnnnn', '2019-01-02 07:17:09', 'relpay', 'read', NULL),
+(6, 7, 'ok', '2019-01-02 08:04:34', 'relpay', 'read', NULL),
+(7, 7, 'ÙƒÙŠÙ Ø­Ø§Ù„Ùƒ', '2019-01-02 08:04:50', 'relpay', 'read', NULL),
+(8, 7, 'ØªÙŠØ¨', '2019-01-02 08:05:42', 'relpay', 'read', NULL),
+(9, 7, 'nothing', '2019-01-03 11:05:24', 'relpay', 'read', NULL),
+(10, 7, 'all message deleted ', '2019-01-03 11:13:50', 'relpay', 'read', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -248,7 +314,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `type`, `photo`, `phone_number`) VALUES
 (6, 'shrooq', 'shrooq', 'shrooq@shrooq', 'shrooq', 'customer', 'default_user.png', '0599777777'),
-(7, 'noor', 'saad', 'noor@noor', 'noor', 'saller', 'default_user.png', '0');
+(7, 'Noor', 'Saad', 'noor@hotmail.com', 'noor', 'saller', '5c2b504ec7357010119343812.png', '0597777779'),
+(8, 'soma', 'saaad', 'soma@soma', 'soma', 'customer', 'default_user.png', '0599777777');
 
 -- --------------------------------------------------------
 
@@ -302,6 +369,12 @@ ALTER TABLE `commission`
 -- Indexes for table `contact`
 --
 ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `delete_conversation`
+--
+ALTER TABLE `delete_conversation`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -372,7 +445,13 @@ ALTER TABLE `commission`
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `delete_conversation`
+--
+ALTER TABLE `delete_conversation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `price_gold`
@@ -396,7 +475,7 @@ ALTER TABLE `purchase`
 -- AUTO_INCREMENT for table `replay`
 --
 ALTER TABLE `replay`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `stores`
@@ -408,7 +487,7 @@ ALTER TABLE `stores`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `withdraw`
