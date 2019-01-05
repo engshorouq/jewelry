@@ -156,7 +156,7 @@ $obj = new admin();
                     <div class="table-users">
                         <table class="table table-hover dataTable">
                             <thead>
-                                <tr>
+                                <tr id="first_row" data-id="<?=$_GET['data']?>">
                                     <th>photo</th>
                                     <th>Name</th>
                                     <th>Store</th>
@@ -288,15 +288,20 @@ $obj = new admin();
     <script>
         $('#search').keyup(function () {
             //alert("done");
+            var cat_id = $('#first_row').attr('data-id');
             var text = $(this).val();
             //alert(text);
-            $('#result_search').html('');
+            
             $.ajax({
                 url: "core/search_product.php",
                 type: "POST",
                 async: false,
-                data: { "search": text },
+                data: { 
+                    "search": text,
+                    "cat_id":cat_id 
+                    },
                 success: function (data) {
+                    $('tbody').html('');
                     $('tbody').html(data);
                 }
             })

@@ -146,7 +146,7 @@ $obj = new website();
                 <div class="table-users">
                         <table class="table table-hover dataTable">
                             <thead>
-                                <tr>
+                                <tr id="store_id_row"  data-content="<?php echo $_GET['data']?>">
                                     <th>photo</th>
                                     <th>Product Name</th>
                                     <th>Product No.</th>
@@ -177,7 +177,7 @@ $obj = new website();
                                         <td><?=($ydata['gold_weight']*$obj->get_price($ydata['gold_kerat'])+$ydata['manuf']); ?> $</td>
                                         <td>
                                             <a href="javascript:delete_product(<?php echo $ydata['id'] ?>);" class="btn btn-danger">delete</a>
-                                            <a href="javascript:edit_product(<?php echo $ydata['id'] ?>);" class="btn btn-info">edit</a>
+                                            <a href="javascript:edit_product(<?php echo $ydata['id'] ?>,<?php echo $ydata['store_id'] ?>);" class="btn btn-info">edit</a>
                                             </td>
 
                                    </tr>
@@ -432,7 +432,7 @@ $obj = new website();
 
 /**to display popup edit product */
     
-    function edit_product(id){
+    function edit_product(id,store_id){
         $('#edit_product_name').val($('tr[data-id="'+id+'"]').children('.name').text());
         $('#edit_weight').val($('tr[data-id="'+id+'"]').children('.gold_weight').text());
         $('#edit_manuf').val($('tr[data-id="'+id+'"]').children('.manuf').text());
@@ -444,13 +444,14 @@ $obj = new website();
         $('#pic_product').attr('src',$('tr[data-id="'+id+'"]').find('.product_img').attr('src'));
         $('#flag').val('1');
         $('tr').removeClass('select_product');
+        $('#edit_store_id').val(store_id);
         $('tr[data-id="' + $('tr[data-id="'+id+'"]').attr('data-id') + '"]').addClass('select_product');
         $('#edit_product').modal();
     }
 
     $('#search').keyup(function () {
             var text = $(this).val();
-            let id = $('#store_id').val();
+            let id = $('#store_id_row').attr('data-content');
             $('#result_search').html('');
             $.ajax({
                 url: "core/search_product.php",

@@ -1,3 +1,7 @@
+<?php
+include_once("core/website.class.php");
+$obj = new website();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,15 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Jewelry</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style/main.css" />
     <link rel="stylesheet" href="fontawesome/css/fontawesome-all.css">
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="style/main.css" />
 </head>
 <body>
     <header >
-        <div class="row">
+        <div class="row" style="background: lightgoldenrodyellow;">
             <div class="col-col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
-                <img src="../assets/img/logo_pho.png" alt="logo" class="logo-header">
+                <img src="../assets/img/logo.png" alt="logo" class="logo-header">
             </div>
             <div class="col-col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
                 
@@ -43,42 +47,153 @@
     </nav>
     <article>
         <section class="all_products">
-            <div class="row">
-                <p>New Products, Great <br> Deals</p>
-            </div>
-            <div class="row">
-                <a href="all_products" class="btn"> Shop Now </a>
+            <div class="all_products_div">
+                <div class="row">
+                    <p>New Products, Great <br> Deals</p>
+                </div>
+                <div class="row">
+                    <a href="all_products" class="btn"> Shop Now </a>
+                </div>
             </div>
         </section>
     </article>
     <article>
-        <section class="new_product">
-            <div class="slideshow_container">
-                <div class="myslides fade">
-                    <img src="../assets/product_img/pro1.jpg" alt="new product">
+        <section class="new_product" title="new products">
+            <div id="demo" class="carousel slide" data-ride="carousel">
+                <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                    <li data-target="#demo" data-slide-to="2"></li>
+                    <li data-target="#demo" data-slide-to="3"></li>
+                    <li data-target="#demo" data-slide-to="4"></li>
+                </ul>
+                <div class="carousel-inner">
+                <?php 
+                    $result = $obj->display_all_products();
+                    $counter=1; 
+                    foreach ($result as $product_data) {
+                        if($counter>5)
+                            break;
+                        ?>
+                    <div class="carousel-item">
+                        <a href="product_cart.php?data=<?=$product_data['id']?>" class="product_cart">
+                            <img src="../assets/product_img/<?=$product_data['photo']?>" alt="new product">
+                        </a>       
+                    </div>
+                    <?php
+                    $counter++;
+                    } ?>
                 </div>
-                <div class="myslides fade">
-                    <img src="../assets/product_img/pro2.jpg" alt="new product">
-                </div>
-                <div class="myslides fade">
-                    <img src="../assets/product_img/pro3.jpg" alt="new product">
-                </div>
-                <div class="myslides fade">
-                    <img src="../assets/product_img/pro4.png" alt="new product">
-                </div>
-                <div class="myslides fade">
-                    <img src="../assets/product_img/pro5.jpg" alt="new product">
-                </div>
-                
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
             </div>
-            <div class="dot_container">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
+
         </section>
+        <section class="most_popular_product" title="most popular products">
+            <div id="demo2" class="carousel slide" data-ride="carousel">
+                <!--<ul class="carousel-indicators" style="bottom:0px;margin-bottom: 0px;">
+                    <li data-target="#demo2" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo2" data-slide-to="1"></li>
+                    <li data-target="#demo2" data-slide-to="2"></li>
+                    <li data-target="#demo2" data-slide-to="3"></li>
+                </ul>-->
+                <div class="carousel-inner">
+                <?php 
+                    $result = $obj->display_popular_products();
+                    ?>
+                    <div class="carousel-item active">
+                        <a href="product_cart.php?data=<?=$result[0]['id']?>" class="product_cart">
+                            <img src="../assets/product_img/<?=$result[0]['photo']?>" alt="new product">
+                        </a>
+                        <a href="product_cart.php?data=<?=$result[1]['id']?>" class="product_cart">
+                            <img src="../assets/product_img/<?=$result[1]['photo']?>" alt="new product">
+                        </a>
+                        <a href="product_cart.php?data=<?=$result[2]['id']?>" class="product_cart">
+                            <img src="../assets/product_img/<?=$result[2]['photo']?>" alt="new product">
+                        </a>
+                        <a href="product_cart.php?data=<?=$result[3]['id']?>" class="product_cart">
+                            <img src="../assets/product_img/<?=$result[3]['photo']?>" alt="new product">
+                        </a>       
+                    </div>
+                    <div class="carousel-item">
+                        <a href="product_cart.php?data=<?=$result[4]['id']?>" class="product_cart">
+                            <img src="../assets/product_img/<?=$result[4]['photo']?>" alt="new product">
+                        </a>
+                        <a href="product_cart.php?data=<?=$result[5]['id']?>" class="product_cart">
+                            <img src="../assets/product_img/<?=$result[5]['photo']?>" alt="new product">
+                        </a>
+                        <a href="product_cart.php?data=<?=$result[6]['id']?>" class="product_cart">
+                            <img src="../assets/product_img/<?=$result[6]['photo']?>" alt="new product">
+                        </a>
+                        <a href="product_cart.php?data=<?=$result[7]['id']?>" class="product_cart">
+                            <img src="../assets/product_img/<?=$result[7]['photo']?>" alt="new product">
+                        </a>       
+                    </div>
+                    <div class="carousel-item">
+                        <a href="product_cart.php?data=<?=$result[8]['id']?>" class="product_cart">
+                            <img src="../assets/product_img/<?=$result[8]['photo']?>" alt="new product">
+                        </a>
+                        <a href="product_cart.php?data=<?=$result[9]['id']?>" class="product_cart">
+                            <img src="../assets/product_img/<?=$result[9]['photo']?>" alt="new product">
+                        </a>
+                        <a href="product_cart.php?data=<?=$result[10]['id']?>" class="product_cart">
+                            <img src="../assets/product_img/<?=$result[10]['photo']?>" alt="new product">
+                        </a>
+                        <a href="product_cart.php?data=<?=$result[11]['id']?>" class="product_cart">
+                            <img src="../assets/product_img/<?=$result[11]['photo']?>" alt="new product">
+                        </a>       
+                    </div>
+                    <div class="carousel-item">
+                        <a href="product_cart.php?data=<?=$result[12]['id']?>" class="product_cart">
+                            <img src="../assets/product_img/<?=$result[12]['photo']?>" alt="new product">
+                        </a>
+                        <a href="product_cart.php?data=<?=$result[13]['id']?>" class="product_cart">
+                            <img src="../assets/product_img/<?=$result[13]['photo']?>" alt="new product">
+                        </a>
+                        <a href="product_cart.php?data=<?=$result[14]['id']?>" class="product_cart">
+                            <img src="../assets/product_img/<?=$result[14]['photo']?>" alt="new product">
+                        </a>
+                        <a href="product_cart.php?data=<?=$result[15]['id']?>" class="product_cart">
+                            <img src="../assets/product_img/<?=$result[15]['photo']?>" alt="new product">
+                        </a>       
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#demo2" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo2" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+
+        </section>
+        <section class="about_us_section" title="about us">
+            <div class="about_us">
+
+                <h1>Our Origins</h1>
+                <p>How We Got Here</p>
+                <img src="../assets/img/about_us.jpg" class="img-thumbnail rounded-circle" alt="image about us">
+                <br>
+                <p>
+                    Since day one , we have been working tirelessly in oreder to expand our product offerings and <br> make
+                    our customers experience even better . We have proud of how far we have come , <br>yet remain committed to
+                    performing event better.
+                    <br>
+                    <br>
+                    Our collectons are carefully selected . Delivery options and payment method generous and flexable .
+                    <br>Browser through our product gallery and experience shopping with Jewelry for yourself . Please<br> don not 
+                    hesitate to contact us with questions , comments or suggestions . 
+                </p>
+                    <a href="#">Learn more</a>
+
+            </div>
+
+        </section>
+
     </article>
     <footer>
         <div class="row">
@@ -92,26 +207,7 @@
     <script src="jquery/jquery-3.3.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.bundle.js"></script>
     <script>
-        var slideIndex = 0;
-        showSlide();
-            function showSlide(){
-                var i;
-                var slides = document.getElementsByClassName('myslides');
-                var dots = document.getElementsByClassName('dot');
-                for(i = 0; i<slides.length; i++){
-                    slides[i].style.display='none';
-                }
-                for(i = 0; i<dots.length; i++){
-                    dots[i].className = dots[i].className.replace(" active","");
-                }
-                if(slideIndex == slides.length){
-                    slideIndex = 0;
-                }
-                slides[slideIndex].style.display='block';
-                dots[slideIndex].className += " active"
-                slideIndex++;
-                setTimeout(showSlide,3000);
-            }
+       $('.carousel-inner').children('div').first().attr('class','carousel-item active')
     </script>
 </body>
 </html>

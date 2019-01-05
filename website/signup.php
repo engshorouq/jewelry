@@ -11,9 +11,9 @@
 </head>
 <body>
     <header >
-        <div class="row">
+        <div class="row" style="background: lightgoldenrodyellow;">
             <div class="col-col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
-                <img src="../assets/img/logo_pho.png" alt="logo" class="logo-header">
+                <img src="../assets/img/logo.png" alt="logo" class="logo-header">
             </div>
             <div class="col-col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
                 

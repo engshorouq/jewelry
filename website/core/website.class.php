@@ -156,6 +156,33 @@ public function product_information($product_id)
             return null;
         }
     }
+    //display all products
+    public function display_all_products(){
+        $result = mysqli_query($this->conn,"SELECT * FROM product ORDER BY id DESC");
+        if(mysqli_num_rows($result)>0){
+            $data = array();
+            while($row = mysqli_fetch_array($result)){
+                $data[]=$row;
+            }
+            return $data;
+        }else{
+            return null;
+        }
+    }
+
+    //display most popular product
+    public function display_popular_products(){
+        $result = mysqli_query($this->conn,"SELECT * FROM product ORDER BY number_buy DESC");
+        if(mysqli_num_rows($result)>0){
+            $data = array();
+            while($row = mysqli_fetch_array($result)){
+                $data[]=$row;
+            }
+            return $data;
+        }else{
+            return null;
+        }
+    }
 
 }
 

@@ -133,12 +133,13 @@ class admin
     /*get id of s search for store name */
     public function get_store_id($store_name)
     {
-        $result_store = mysqli_query($this->conn, "select id from store where name like '%$store_name%'");
+        $result_store = mysqli_query($this->conn, "SELECT id from stores where name like '%$store_name%'");
         if (mysqli_num_rows($result_store) > 0) {
             $data = array();
             while ($id = mysqli_fetch_array($result_store)) {
                 $data[] = $id;
             }
+            //var_dump($data[0]);
             return $data;
         } else {
             return null;

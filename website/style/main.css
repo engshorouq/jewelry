@@ -13,13 +13,13 @@
 
 /* Start of header*/
 #row{
-    border-bottom: 1px solid #8c82fba1;
-    border-top: 1px solid #8c82fba1;
+    border-bottom: 1px solid #deb618;
+    border-top: 1px solid #deb618;
 }
 .logo-header{
     display: block;
-    width: 160px;
-    margin-left: 59%;
+    width: 408px;
+    margin-left: 41%;
     height: 135px;
 
 }
@@ -34,11 +34,11 @@
     display: block;
     margin-top: 95px;
     margin-left: 20px;
-    color: #2e2f61;
+    color: black;
     text-decoration: none;
 }
 .ul_header li a:hover{
-    color: #2a2ef1;
+    color: #fbb54e;
 }
 /*End of header*/
 
@@ -55,22 +55,22 @@
 }
 .ul_nav li a{
   display: block;
-  color: #2e2f61;
+  color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 .ul_nav li a:hover{
-    background: #d2d2d2;
-    color: #28294b;
+    background: #271207bb;
+    color: #fbb54e;
 }
 /*End of nav*/
 
 /* Start Of Section all products*/
 .all_products{
     width: 100%;
-    height: 450px;
-    background-image: url("../../assets/img/background.jpg");
+    height: 500px;
+    background-image: url("../../assets/img/background-gold-2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -81,75 +81,58 @@
     font-size: 60px;
     margin-left: auto;
     margin-right: auto;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'ZCOOL XiaoWei', serif;
     margin-top: 85px;
 }
 .all_products a{
     margin-left: auto;
     margin-right: auto;
     margin-top: 45px;
-    background:blue;
+    background: #110803;
     color:white;
     padding:10px;
     text-decoration:none;
 }
 .all_products a:hover{
     color:white;
-    background: #00009c;
+    background: #271207bb;
 }
-
+.all_products_div{
+    height: 100%;
+    background: #431b0826;
+}
 /* End Of Section of all products*/
 
 /* Start of section new product */
 
-.slideshow_container{
-    width:100%;
-    position: relative;
-    margin: auto;
-
-}
-.myslides{
-    display:none;
-}
-.myslides img{
+.carousel-item img{
     width: 100%;
-    height: 500px;
+    height: 450px;
+}  
+.carousel-indicators .active{
+    background: rgba(53, 52, 52, 0.322);
 }
-.dot{
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease
+.most_popular_product{
+    /*background: #1c24dbd9;*/
+    background-image: url("../../assets/img/background-gold-2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+   /* margin-top: 10px;*/
+    height: 160px;
+    padding: 15px
 }
-.dot_container{
-    margin-left: 50%;
+.most_popular_product img{
+    width: 200px;
+    height: 120px;
+    padding: 10px;
+    margin: 5px;
+    margin-left: 30px
 }
-.active {
-    background-color: #717171;
-  }
-
-
-  /* Fading animation */
-.fade {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
-    animation-name: fade;
-    animation-duration: 1.5s;
-  }
-  
-  @-webkit-keyframes fade {
-    from {opacity: .4} 
-    to {opacity: 1}
-  }
-  
-  @keyframes fade {
-    from {opacity: .4} 
-    to {opacity: 1}
-  }
-  
+.most_popular_product .carousel-item{
+    text-align: center;
+}
 /* End of section new product*/
 
 /*start of footer*/
@@ -167,11 +150,11 @@ footer .row span{
     font-size: 20px;
 }
 footer .row span a{
-    color: #2e2f61;
+    color: black;
     text-decoration: none;
 }
 footer .row span a:hover{
-    color: #3337b3;
+    color: #fbb54e;
 }
 /*end of footer*/
 
@@ -191,7 +174,7 @@ footer .row span a:hover{
     text-decoration: none;
 }
 .container_signup p a:hover{
-    color: rgb(29, 18, 179);
+    color: #fbb54e;
     text-decoration: none;
 }
 .signup_form{
@@ -204,6 +187,40 @@ footer .row span a:hover{
     font-weight: bold;
 }
 /*End of sign up form*/
+/*start of about us*/
+.about_us_section{
+    background: #dcad42c7;
+}
+.about_us{
+    text-align: center;
+    margin: 10px;
+    margin-top: 5%;
+    height: 810px;
+}
+.about_us img{
+    width: 320px;
+    height: 300px;
+    margin-bottom: 25px;
+}
+.about_us h1{
+    font-style: italic;
+    font-family: 'ZCOOL XiaoWei', serif;
+    font-size: 3rem;
+}
+.about_us p{
+    line-height: 40px;
+}
+.about_us a{
+    border: 1px solid black;
+    padding: 12px;
+    color:black;
+}
+.about_us a:hover{
+    text-decoration: none;
+    color:black;
+}
+
+/*end of about us*/
 
 /*start of display stors*/
 
