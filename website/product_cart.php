@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once("core/website.class.php");
 $obj = new website();
 ?>
@@ -28,7 +29,8 @@ $obj = new website();
                     <li><a href="#"><i class="fab">&#xf09a;</i></a></li>
                     <li><a href="#"><i class="fab">&#xf099;</i></a></li>
                     <li><a href="#"><i class="fab">&#xf08c;</i></a></li>
-                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                    <li><a href="#"><i class="fa fa-shopping-cart"></i><span class="num_card"><?php
+                    if(!empty($_SESSION['card'])) echo count($_SESSION['card']);?></span></a></li>
                 </ul>
             </div>
         </div>
@@ -56,6 +58,7 @@ $obj = new website();
                         <img src="../assets/product_img/<?=$ydata['photo']?>" alt="product image" class="img-thumbnail">
                     </div>
                     <div class="col-col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 card_info">
+                    <form id="product_card_form" method="POST">
                         <p>Product Name &nbsp;&nbsp;&nbsp;&nbsp; : </p><span><?=$ydata['name']?></span><br><br>
                         <p>Product Store &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </p>
                         <span><?=$obj->get_store_name($ydata['store_id'])?></span><br><br>
@@ -68,10 +71,14 @@ $obj = new website();
                         <p>Product Kerat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </p>
                         <span><?=$ydata['gold_kerat']?> kerat</span><br><br>
                         <p>Product Price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </p>
+                        <input type="hidden" name="product_id" value="<?=$ydata['id']?>">
                         <span><?=($ydata['gold_weight']*$obj->get_price($ydata['gold_kerat'])+$ydata['manuf']); ?> $</span><br><br>
-                        <span>Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span><input type="number" step="1" name="size" class="size"><br>
-                        <br><span>Quantity : </span><input type="number" step="1" name="quantity" class="quantity">
+                        <span>Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span>
+                        <input type="number" step="1" name="size" class="size" required><br>
+                        <br><span>Quantity : </span>
+                        <input type="number" step="1" name="quantity" class="quantity" required>
                         <input type="submit" value="Add To Card" name="send" id="send">
+                    </form>
                     </div>
                     
             <?php    }
@@ -80,7 +87,6 @@ $obj = new website();
             
         </section>
     </article>
-    
 
     <footer>
         <div class="row">
@@ -94,7 +100,22 @@ $obj = new website();
     <script src="jquery/jquery-3.3.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.bundle.js"></script>
     <script>
-       $('.carousel-inner').children('div').first().attr('class','carousel-item active')
+       $('#product_card_form').submit(function(e){
+           e.preventDefault();
+           let formData = new FormData(this);
+           $.ajax({
+                url: "core/add_card.php",
+                type: "POST",
+                async: false,
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    $('.num_card').html(data);
+                }
+            });
+       });
     </script>
 </body>
 </html>

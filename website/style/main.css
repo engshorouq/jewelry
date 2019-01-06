@@ -246,7 +246,7 @@ footer .row span a:hover{
     font-size: 20px;
 }
 .card_info input{
-    width: 35px;
+    width: 40px;
     margin-left: 10px;
 }
 .card_info input:focus{
@@ -268,7 +268,11 @@ footer .row span a:hover{
 
 
 /*start of display stors*/
-
+.num_card{
+    position: absolute;
+    top: 77px;
+    right: 53px;
+}
 
 
 /*End of display all stors*/
