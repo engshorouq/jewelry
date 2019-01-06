@@ -36,12 +36,12 @@ $obj = new website();
     <nav>
         <div class="row" id="row">
                 <ul class="ul_nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="#">Stores</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="all_products.php">Products</a></li>
+                    <li><a href="all_stores.php">Stores</a></li>
+                    <li><a href="all_product_cat.php">Categories</a></li>
+                    <li><a href="about_us.php">About Us</a></li>
+                    <li><a href="contact.php">Contact</a></li>
                 </ul>
        </div>
     </nav>
@@ -188,7 +188,7 @@ $obj = new website();
                     <br>Browser through our product gallery and experience shopping with Jewelry for yourself . Please<br> don not 
                     hesitate to contact us with questions , comments or suggestions . 
                 </p>
-                    <a href="#">Learn more</a>
+                    <a href="about_us.php">Learn more</a>
 
             </div>
 
