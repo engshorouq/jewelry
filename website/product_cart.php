@@ -29,7 +29,7 @@ $obj = new website();
                     <li><a href="#"><i class="fab">&#xf09a;</i></a></li>
                     <li><a href="#"><i class="fab">&#xf099;</i></a></li>
                     <li><a href="#"><i class="fab">&#xf08c;</i></a></li>
-                    <li><a href="#"><i class="fa fa-shopping-cart"></i><span class="num_card"><?php
+                    <li><a href="display_card.php"><i class="fa fa-shopping-cart"></i><span class="num_card"><?php
                     if(!empty($_SESSION['card'])) echo count($_SESSION['card']);?></span></a></li>
                 </ul>
             </div>
@@ -100,6 +100,7 @@ $obj = new website();
     <script src="jquery/jquery-3.3.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.bundle.js"></script>
     <script>
+        /*for add iin the shopping card */
        $('#product_card_form').submit(function(e){
            e.preventDefault();
            let formData = new FormData(this);
@@ -116,6 +117,8 @@ $obj = new website();
                 }
             });
        });
+      
+
     </script>
 </body>
 </html>

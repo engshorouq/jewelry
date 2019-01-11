@@ -4,6 +4,7 @@ $obj = new website();
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,15 +14,16 @@ $obj = new website();
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="style/main.css" />
 </head>
+
 <body>
-    <header >
+    <header>
         <div class="row" style="background: lightgoldenrodyellow;">
             <div class="col-col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
                 <img src="../assets/img/logo.png" alt="logo" class="logo-header">
             </div>
             <div class="col-col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                
-                
+
+
                 <ul class="ul_header">
                     <li><a href="login.php">Login</a></li>
                     <li><a href="signup.php">signup</a></li>
@@ -35,15 +37,17 @@ $obj = new website();
     </header>
     <nav>
         <div class="row" id="row">
-                <ul class="ul_nav">
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="all_products.php">Products</a></li>
-                    <li><a href="all_stores.php">Stores</a></li>
-                    <li><a href="all_product_cat.php">Categories</a></li>
-                    <li><a href="about_us.php">About Us</a></li>
-                    <li><a href="contact.php">Contact</a></li>
-                </ul>
-       </div>
+            <ul class="ul_nav">
+                <li><a href="index.php">Home</a></li>
+                <li><a href="all_products.php?data=0">Products</a></li>
+                <li><a href="all_stores.php">Stores</a></li>
+                <li>
+                    <a href="all_stores.php">Categories</a></li>
+                </li>
+                <li><a href="about_us.php">About Us</a></li>
+                <li><a href="contact.php">Contact</a></li>
+            </ul>
+        </div>
     </nav>
     <article>
         <section class="all_products">
@@ -52,7 +56,7 @@ $obj = new website();
                     <p>New Products, Great <br> Deals</p>
                 </div>
                 <div class="row">
-                    <a href="all_products" class="btn"> Shop Now </a>
+                    <a href="all_products.php?data=0" class="btn"> Shop Now </a>
                 </div>
             </div>
         </section>
@@ -68,7 +72,7 @@ $obj = new website();
                     <li data-target="#demo" data-slide-to="4"></li>
                 </ul>
                 <div class="carousel-inner">
-                <?php 
+                    <?php 
                     $result = $obj->display_all_products();
                     $counter=1; 
                     foreach ($result as $product_data) {
@@ -78,7 +82,7 @@ $obj = new website();
                     <div class="carousel-item">
                         <a href="product_cart.php?data=<?=$product_data['id']?>" class="product_cart">
                             <img src="../assets/product_img/<?=$product_data['photo']?>" alt="new product">
-                        </a>       
+                        </a>
                     </div>
                     <?php
                     $counter++;
@@ -95,14 +99,9 @@ $obj = new website();
         </section>
         <section class="most_popular_product" title="most popular products">
             <div id="demo2" class="carousel slide" data-ride="carousel">
-                <!--<ul class="carousel-indicators" style="bottom:0px;margin-bottom: 0px;">
-                    <li data-target="#demo2" data-slide-to="0" class="active"></li>
-                    <li data-target="#demo2" data-slide-to="1"></li>
-                    <li data-target="#demo2" data-slide-to="2"></li>
-                    <li data-target="#demo2" data-slide-to="3"></li>
-                </ul>-->
+
                 <div class="carousel-inner">
-                <?php 
+                    <?php 
                     $result = $obj->display_popular_products();
                     ?>
                     <div class="carousel-item active">
@@ -117,7 +116,7 @@ $obj = new website();
                         </a>
                         <a href="product_cart.php?data=<?=$result[3]['id']?>" class="product_cart">
                             <img src="../assets/product_img/<?=$result[3]['photo']?>" alt="new product">
-                        </a>       
+                        </a>
                     </div>
                     <div class="carousel-item">
                         <a href="product_cart.php?data=<?=$result[4]['id']?>" class="product_cart">
@@ -131,7 +130,7 @@ $obj = new website();
                         </a>
                         <a href="product_cart.php?data=<?=$result[7]['id']?>" class="product_cart">
                             <img src="../assets/product_img/<?=$result[7]['photo']?>" alt="new product">
-                        </a>       
+                        </a>
                     </div>
                     <div class="carousel-item">
                         <a href="product_cart.php?data=<?=$result[8]['id']?>" class="product_cart">
@@ -145,7 +144,7 @@ $obj = new website();
                         </a>
                         <a href="product_cart.php?data=<?=$result[11]['id']?>" class="product_cart">
                             <img src="../assets/product_img/<?=$result[11]['photo']?>" alt="new product">
-                        </a>       
+                        </a>
                     </div>
                     <div class="carousel-item">
                         <a href="product_cart.php?data=<?=$result[12]['id']?>" class="product_cart">
@@ -159,7 +158,7 @@ $obj = new website();
                         </a>
                         <a href="product_cart.php?data=<?=$result[15]['id']?>" class="product_cart">
                             <img src="../assets/product_img/<?=$result[15]['photo']?>" alt="new product">
-                        </a>       
+                        </a>
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#demo2" data-slide="prev">
@@ -179,16 +178,19 @@ $obj = new website();
                 <img src="../assets/img/about_us.jpg" class="img-thumbnail rounded-circle" alt="image about us">
                 <br>
                 <p>
-                    Since day one , we have been working tirelessly in oreder to expand our product offerings and <br> make
-                    our customers experience even better . We have proud of how far we have come , <br>yet remain committed to
+                    Since day one , we have been working tirelessly in oreder to expand our product offerings and <br>
+                    make
+                    our customers experience even better . We have proud of how far we have come , <br>yet remain
+                    committed to
                     performing event better.
                     <br>
                     <br>
                     Our collectons are carefully selected . Delivery options and payment method generous and flexable .
-                    <br>Browser through our product gallery and experience shopping with Jewelry for yourself . Please<br> don not 
-                    hesitate to contact us with questions , comments or suggestions . 
+                    <br>Browser through our product gallery and experience shopping with Jewelry for yourself . Please<br>
+                    don not
+                    hesitate to contact us with questions , comments or suggestions .
                 </p>
-                    <a href="about_us.php">Learn more</a>
+                <a href="about_us.php">Learn more</a>
 
             </div>
 
@@ -203,11 +205,12 @@ $obj = new website();
         </div>
     </footer>
 
-    
+
     <script src="jquery/jquery-3.3.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.bundle.js"></script>
     <script>
-       $('.carousel-inner').children('div').first().attr('class','carousel-item active')
+        $('.carousel-inner').children('div').first().attr('class', 'carousel-item active')
     </script>
 </body>
+
 </html>

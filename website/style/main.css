@@ -36,6 +36,7 @@
     margin-left: 20px;
     color: black;
     text-decoration: none;
+    cursor: pointer;
 }
 .ul_header li a:hover{
     color: #fbb54e;
@@ -268,11 +269,38 @@ footer .row span a:hover{
 
 
 /*start of display stors*/
+/*start of cards*/
 .num_card{
     position: absolute;
     top: 77px;
     right: 53px;
 }
 
+/*end of cards*/
+.product_card_div{
+    border: 2px solid #deb6184f;
+    padding: 10px;
+    margin: 10px 57px;
+    border-radius: 10px;
+    text-align: center;
+}
+.product_card_div img{
+    width: 155px;
+    height: 150px;
+}
+.book{
+    display: block;
+    color: #efb445;
+    background: #271908;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 5px;
+}
+.book:hover{
+    text-decoration: none;
+    color: #cf6108;
+    background: #3c2203f7;
+}
 
 /*End of display all stors*/
