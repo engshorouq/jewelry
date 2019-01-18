@@ -42,7 +42,8 @@ $obj = new website();
                     <img src="../assets/img/logo.jpg" alt="logo" id="logo">
                 </a>
                 <h2 id="logo-h"> Jewelry</h2>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
@@ -53,28 +54,33 @@ $obj = new website();
                             </div>
                         </li>-->
                         <li class="nav-item dropdown notification">
-                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
+                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span
+                                    class="indicator"></span></a>
                             <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
                                 <li>
                                     <div class="notification-title"> Notification</div>
                                     <div class="notification-listt">
                                         <div class="list-group">
-                                        <a href='contact.php' class="list-group-item list-group-item-action">
+                                            <a href='contact.php' class="list-group-item list-group-item-action">
                                                 Notifications
                                             </a>
-                                            
+
                                         </div>
                                     </div>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                                 <img src="../assets/users_img/<?=$_SESSION['user_img']?>" alt="" class="user-avatar-md rounded-circle">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name"><?=$_SESSION['user_first_name']." ".$_SESSION['user_last_name'];?></h5>
+                                    <h5 class="mb-0 text-white nav-user-name">
+                                        <?=$_SESSION['user_first_name']." ".$_SESSION['user_last_name'];?>
+                                    </h5>
                                 </div>
                                 <a class="dropdown-item" href="setting_saller.php"><i class="fas fa-cog mr-2"></i>Setting</a>
                                 <a class="dropdown-item" href="logout.php"><i class="fas fa-power-off mr-2"></i>Logout</a>
@@ -94,7 +100,8 @@ $obj = new website();
             <div class="menu-list">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <a class="d-xl-none d-lg-none" href="#">MENU</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
@@ -128,32 +135,38 @@ $obj = new website();
         <div class="dashboard-wrapper">
             <div class="dashboard-ecommerce">
                 <div class="container-fluid dashboard-content products">
-                    <h2 class="header_setting"><i class="fa fa-cog"></i> Setting <h2>
+                    <h2 class="header_setting"><i class="fa fa-cog"></i> Setting </h2>
                     <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                        <?php $data=$obj->user_information($_SESSION['user_id']);
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <?php $data=$obj->user_information($_SESSION['user_id']);
                         //var_dump($data);
                         foreach($data as $ydata){
                         ?>
-                        <p class="title">General Information</p>
-                        <form class="form-inline" id="form_setting_general" action="" method="post">
+                            <p class="title">General Information</p>
+                            <form class="form-inline" id="form_setting_general" action="" method="post">
                                 <fieldset class="result_edit">
 
                                     <div class="form-group setting_form" style="margin-bottom: 15px;">
                                         <label class="control-label">First Name : </label>
-                                        <input type="text" value="<?=$ydata['first_name'];?>" name="first_name" placeholder="First Name" id="first_name" class="form-control setting_input">
+                                        <input type="text" value="<?=$ydata['first_name'];?>" name="first_name"
+                                            placeholder="First Name" id="first_name" class="form-control setting_input">
                                     </div>
                                     <div class="form-group setting_form" style="margin-bottom: 15px;">
                                         <label class="control-label">Last Name : </label>
-                                        <input type="text" value="<?=$ydata['last_name'];?>" name="last_name" placeholder="Last Name" id="last_name" class="form-control setting_input">
+                                        <input type="text" value="<?=$ydata['last_name'];?>" name="last_name"
+                                            placeholder="Last Name" id="last_name" class="form-control setting_input">
                                     </div>
                                     <div class="form-group setting_form" style="margin-bottom: 15px;">
-                                        <label class="control-label">Email 	&nbsp;&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;: </label>
-                                        <input type="email" value="<?=$ydata['email'];?>" name="email" placeholder="email" id="email" class="form-control setting_input">
+                                        <label class="control-label">Email &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:
+                                        </label>
+                                        <input type="email" value="<?=$ydata['email'];?>" name="email" placeholder="email"
+                                            id="email" class="form-control setting_input">
                                     </div>
                                     <div class="form-group setting_form" style="margin-bottom: 15px;">
-                                        <label class="control-label">Phone &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;: </label>
-                                        <input type="text" value="<?=$ydata['phone_number'];?>" name="number" placeholder="Phone Number Start With 05-" id="number" patten="[0-9]{10}" class="form-control setting_input">
+                                        <label class="control-label">Phone &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: </label>
+                                        <input type="text" value="<?=$ydata['phone_number'];?>" name="number"
+                                            placeholder="Phone Number Start With 05-" id="number" patten="[0-9]{10}"
+                                            class="form-control setting_input">
                                     </div>
                                     <input type="hidden" name="id" id="id" value="<?=$ydata['id'];?>">
                                     <input type="hidden" name="flag" id="flag" value="1">
@@ -168,15 +181,16 @@ $obj = new website();
                             </form>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                             <p class="title">Change Password</p>
-                             <form class="form-inline" id="form_setting_password" action="" method="post">
+                            <p class="title">Change Password</p>
+                            <form class="form-inline" id="form_setting_password" action="" method="post">
                                 <fieldset>
-                                    
-                                    
-                                    <input type="hidden" name="id"  value="<?=$ydata['id'];?>">
+
+
+                                    <input type="hidden" name="id" value="<?=$ydata['id'];?>">
                                     <?php } ?>
                                     <div class="form-group setting_form" style="margin-bottom: 15px;">
-                                        <label class="control-label">Old Password &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        <label class="control-label">Old Password
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                         <input type="password" name="old" placeholder="old password" id="old" class="form-control setting_input">
                                     </div>
                                     <div class="form-group setting_form" style="margin-bottom: 15px;">
@@ -185,20 +199,21 @@ $obj = new website();
                                     </div>
                                     <div class="form-group setting_form" style="margin-bottom: 15px;">
                                         <label class="control-label">Confirm Password</label>
-                                        <input type="password" name="confirm" placeholder="confirm password" id="confirm" class="form-control setting_input">
+                                        <input type="password" name="confirm" placeholder="confirm password" id="confirm"
+                                            class="form-control setting_input">
                                     </div>
-                                   
+
                                     <div class="btn_group">
                                         <input type="submit" name="edit" class="btn btn-primary btn_edit" value="edit">
                                     </div>
                                     <div class="result_password">
-                                    <input type="hidden" name="old_password" value="<?=$ydata['password'];?>">
+                                        <input type="hidden" name="old_password" value="<?=$ydata['password'];?>">
                                         <div>
                                 </fieldset>
-                         </form>
+                            </form>
                         </div>
-                         
-                    </div>    
+
+                    </div>
                 </div>
             </div>
 
@@ -211,9 +226,9 @@ $obj = new website();
             <div class="footer">
                 <div class="container-fluid">
                     <div class="row">
-                            <span><a href="#"><i class="fab">&#xf09a;</i></a></span>
-                            <span><a href="#"><i class="fab">&#xf099;</i></a></span>
-                            <span><a href="#"><i class="fab">&#xf08c;</i></a></span>
+                        <span><a href="#"><i class="fab">&#xf09a;</i></a></span>
+                        <span><a href="#"><i class="fab">&#xf099;</i></a></span>
+                        <span><a href="#"><i class="fab">&#xf08c;</i></a></span>
                     </div>
                 </div>
             </div>
@@ -251,53 +266,52 @@ $obj = new website();
     <script src="../assets/libs/js/dashboard-ecommerce.js"></script>
 </body>
 <script>
-$('#form_setting_general').submit(function (e) {
-            //e.preventDefault();
-            //alert("done");
-            var formdata = new FormData(this);
-            //alert(data.get('file').name);
-            $.ajax({
-                url: "core/edit_user.php",
-                type: "POST",
-                async: false,
-                data: formdata,
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function (data) {
-                    $('.result_edit').html('');
-                    $('#flag').val('1');
-                    $('.result_edit').html(data);
-                }
-            });
-        });
+$('#form_setting_general').submit(function(e) {
+    //e.preventDefault();
+    //alert("done");
+    var formdata = new FormData(this);
+    //alert(data.get('file').name);
+    $.ajax({
+        url: "core/edit_user.php",
+        type: "POST",
+        async: false,
+        data: formdata,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(data) {
+            $('.result_edit').html('');
+            $('#flag').val('1');
+            $('.result_edit').html(data);
+        }
+    });
+});
 
-          $('input[id="edit_file"]').on('change', function() {
-            $('#flag').val('2');
-        });
+$('input[id="edit_file"]').on('change', function() {
+    $('#flag').val('2');
+});
 
-        $('#form_setting_password').submit(function (e) {
-            e.preventDefault();
-            var formdata = new FormData(this);
-            $.ajax({
-                url: "core/edit_user.php",
-                type: "POST",
-                async: false,
-                data: formdata,
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function (data) {
-                    $('#old').val('');
-                    $('#new').val('');
-                    $('#confirm').val('');
-                    
-                    $('.result_password').html('');
-                    $('.result_password').html(data);
-                }
-            });
-        });
-   
+$('#form_setting_password').submit(function(e) {
+    e.preventDefault();
+    var formdata = new FormData(this);
+    $.ajax({
+        url: "core/edit_user.php",
+        type: "POST",
+        async: false,
+        data: formdata,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(data) {
+            $('#old').val('');
+            $('#new').val('');
+            $('#confirm').val('');
+
+            $('.result_password').html('');
+            $('.result_password').html(data);
+        }
+    });
+});
 </script>
 
 </html>

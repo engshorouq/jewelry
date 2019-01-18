@@ -280,7 +280,7 @@ footer .row span a:hover{
 .product_card_div{
     border: 2px solid #deb6184f;
     padding: 10px;
-    margin: 10px 57px;
+    margin: 20px 50px;
     border-radius: 10px;
     text-align: center;
 }
@@ -303,4 +303,65 @@ footer .row span a:hover{
     background: #3c2203f7;
 }
 
+.category_list{
+    text-align: center;
+    margin: 20px 10px;
+}
+.category_list .cat_name{
+    padding: 10px;
+    margin-left: 5px;
+    color:black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.category_list .cat_name:hover{
+    text-decoration: none;
+    color: black;
+}
+.category_list .cat_name::after{
+    content: "  |  "
+}
+.purchase{
+    position: fixed;
+    top: 14rem;
+    left: 75rem;
+    color: #000000;
+    background: #fbb54e;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #0a0a0a;
+}
+.purchase:hover{
+    text-decoration: none;
+    color: #f98d06;
+    background: #605149;
+    border: 2px solid;
+}
+.customer_img{
+    width: 70px;
+    height: 70px;
+    margin-top: 49px;
+}
 /*End of display all stors*/
+.setting_form{
+    width: 500px !important;
+    
+}
+.setting_input{
+  width: 60%;
+  margin-left: 20px;
+}
+.header_setting{
+  padding: 20px;
+  border-bottom: 1px solid #80808059;
+  margin-bottom: 35px;
+}
+.title{
+  background: #808080c7;
+  color: white;
+  padding: 10px;
+}
+.btn_edit{
+  width: 85px;
+}

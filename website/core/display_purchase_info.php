@@ -22,6 +22,8 @@ foreach ($data_purchase as $ydata) {
        <br><br><span class="title1"> Product Number : </span><span>'.$data['number'].'</span>
        <br><br><span class="title1"> Product Price : </span><span>'.$ydata['price'].' $</span>
        <br><br><span class="title1">Store Name : </span><span>'.$obj->get_store_name($data['store_id']).'</span>
+       <br><br><span class="title1"> Product Size : </span><span>'.$ydata['size'].' </span>
+       <br><br><span class="title1"> Product Quantity : </span><span>'.$ydata['quantity'].' </span>
        </div>'; 
     }
     //to display customer information

@@ -19,15 +19,23 @@ $obj = new website();
 <body>
     <header>
         <div class="row" style="background: lightgoldenrodyellow;">
-            <div class="col-col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
+            <div class="col-col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
                 <img src="../assets/img/logo.png" alt="logo" class="logo-header">
             </div>
-            <div class="col-col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+            <div class="col-col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
 
 
                 <ul class="ul_header">
-                    <li><a href="login.php">Login</a></li>
+                    <?php if(!empty($_SESSION['user_id'])) {?>
+                    <li style=" display: inline-flex;">
+                        <img src="../assets/users_img/<?=$_SESSION['user_img']?>" alt="" class="customer_img rounded-circle">
+                        <a href="logout.php">Log Out</a>
+                        <a href="setting_customer.php">Setting</a>
+                    </li>
+                    <?php }else{?>
+                    <li style="margin-left: 7rem;"><a href="login.php">Login</a></li>
                     <li><a href="signup.php">signup</a></li>
+                    <?php } ?>
                     <li><a href="#"><i class="fab">&#xf09a;</i></a></li>
                     <li><a href="#"><i class="fab">&#xf099;</i></a></li>
                     <li><a href="#"><i class="fab">&#xf08c;</i></a></li>
@@ -62,7 +70,6 @@ $obj = new website();
                     <p>
                         <?=$ydata['name']?>
                     </p>
-                    <input type="hidden" name="id" id="id" value="<?=$ydata['id']?>">
                     <span>
                         <?=($ydata['gold_weight']*$obj->get_price($ydata['gold_kerat'])+$ydata['manuf']); ?> $</span>
                     <a href="product_cart.php?data=<?=$ydata['id']?>" class="book">Book It</a>
@@ -87,26 +94,6 @@ $obj = new website();
     <script src="jquery/jquery-3.3.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.bundle.js"></script>
     <script>
-        /*for delete from  the shopping card */
-        $('.send').click(function(e) {
-            console.log($(this).parent().parent().parent().attr('class', 'row selected'));
-            e.preventDefault();
-            let id = $(this).parent().find('input[type="hidden"]').val();
-            //console.log(id);
-            $.ajax({
-                url: "core/delete_card.php",
-                type: "POST",
-                async: false,
-                data: {
-                    'offset': id
-                },
-                success: function(data) {
-                    $('.selected').remove();
-                    let num = $('.num_card').text();
-                    $('.num_card').text(parseInt(num) - 1);
-                }
-            });
-        });
     </script>
 </body>
 

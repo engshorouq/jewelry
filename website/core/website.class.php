@@ -117,6 +117,7 @@ public function get_store_name($store_id)
         }
         return $store_name;
     }
+    
 //display product based on product id
 public function product_information($product_id)
     {
@@ -127,6 +128,17 @@ public function product_information($product_id)
         }
         return $data;
     }
+
+    //display product based on category id
+public function product_category($cat_id)
+{
+    $result = mysqli_query($this->conn, "select * from product where cat_id=$cat_id");
+    $data=array();
+    while ($row = mysqli_fetch_array($result)) {
+        $data[]=$row;
+    }
+    return $data;
+}
 
     //display user information based on user id
  public function user_information($id){
