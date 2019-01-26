@@ -31,6 +31,7 @@ $date_delete = $obj->get_date($user_id,'request');
                 array_multisort($date, SORT_ASC, $merge);
                 //display the array after sort it
                 //if there is any delete messages
+                $output .= count($merge);
                 if($date_delete==null){
                     foreach($merge as $data){
                             if($data['type']=='request'){
@@ -51,6 +52,7 @@ $date_delete = $obj->get_date($user_id,'request');
                             } 
                     }
                     echo $output;
+                    
                 }else{
                     foreach($merge as $data){
                         if($date_delete[0]['date']<$data['date']){

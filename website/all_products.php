@@ -54,7 +54,7 @@ $obj = new website();
                 <li><a href="all_stores.php">Stores</a></li>
                 <li><a href="all_product_cat.php">Categories</a></li>
                 <li><a href="about_us.php">About Us</a></li>
-                <li><a href="contact.php">Contact</a></li>
+                <li><a href="contact_customer.php">Contact</a></li>
             </ul>
         </div>
     </nav>

@@ -41,7 +41,8 @@ $obj = new admin();
                     <img src="assets/img/logo.jpg" alt="logo" id="logo">
                 </a>
                 <h2 id="logo-h"> Jewelry</h2>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
@@ -52,7 +53,9 @@ $obj = new admin();
                             </div>
                         </li>-->
                         <li class="nav-item dropdown notification">
-                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
+                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span
+                                    class="indicator"></span></a>
                             <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
                                 <li>
                                     <div class="notification-title"> Notification</div>
@@ -70,19 +73,22 @@ $obj = new admin();
                             </ul>
                         </li>
                         <li class="nav-item dropdown nav-user">
-                        <?php $result=$obj->admin_info($_SESSION['login_id']);
+                            <?php $result=$obj->admin_info($_SESSION['login_id']);
                             foreach($result as $data){
 
                            
                         ?>
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                                 <img src="assets/admin_img/<?=$data['photo']?>" alt="" class="user-avatar-md rounded-circle">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name"><?= $data['first_name']." ".$data['last_name'];?></h5>
+                                    <h5 class="mb-0 text-white nav-user-name">
+                                        <?= $data['first_name']." ".$data['last_name'];?>
+                                    </h5>
                                 </div>
-                            <?php } ?>
+                                <?php } ?>
                                 <a class="dropdown-item" href="setting_admin.php"><i class="fas fa-cog mr-2"></i>Setting</a>
                                 <a class="dropdown-item" href="logout.php"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
@@ -101,7 +107,8 @@ $obj = new admin();
             <div class="menu-list">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <a class="d-xl-none d-lg-none" href="#">MENU</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
@@ -153,12 +160,12 @@ $obj = new admin();
                         </div>
                         <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
                             <p class="p_head" style="float:right;">
-                            <a href="javascript:delete_chat();"><i class="fa fa-trash"></i>  Delete</a></p>
+                                <a href="javascript:delete_chat();"><i class="fa fa-trash"></i> Delete</a></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 div-users">
-                            
+
                             <?php 
                             $type='saller';
                             if($_GET['data']==1){$type='customer';}
@@ -170,36 +177,44 @@ $obj = new admin();
                             ?>
                             <a href="javascript:display_messages(<?=$data['id'];?>);" class="display_link" id="<?=$counter++;?>">
                                 <div class="row users" data-id="<?=$data['id'];?>">
-                                    <img src="assets/users_img/<?=$data['photo'];?>" class="img-thumbnail rounded-circle personal-photo" alt="photo of user">
-                                    <span class="name_user"><?=$data['first_name'];?></span>
-                                    <?php $msg=$obj->users_contact($data['id']); ?>
-                                    <div class="last_msg <?=$msg[0]['status'];?>"><?=$msg[0]['msg'];?></div>
+                                    <img src="assets/users_img/<?=$data['photo'];?>" class="img-thumbnail rounded-circle personal-photo"
+                                        alt="photo of user">
+                                    <span class="name_user">
+                                        <?=$data['first_name'];?></span>
+                                    <?php $msg=$obj->users_contact($data['id']); 
+                                    ?>
+                                    <div class="last_msg <?=$msg[0]['status'];?>">
+                                        <?=$msg[count($msg)-1]['msg'];?>
+                                    </div>
                                 </div>
                             </a>
                             <?php }}}?>
-                            
-                            
+
+
                         </div>
                         <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
                             <div class="content_msg">
-                                
+
                                 <div class="content_msg_user" title="date">
-                                    
-                                
+
+
                                 </div>
-                                
+
                                 <div class="content_msg_admin" title="date">
-                                    
-                                
+
+
                                 </div>
                             </div>
                             <div class="form_div">
-                                <form name="request" id="rep_div" method="post" class="form-inline form-request" enctype="multipart/form-data">
-                                <textarea class="form-control-plaintext" name="text_msg" rows="2" id="comment" placeholder="typing your message ..."></textarea>
-                                <i class="fa fa-camera" id="file_icon"></i>
-                                <input type="file" name="file" id="file_photo">
-                                <input type="hidden" name="user_id" id="user_id" value="">
-                                <button type="submit" class="btn btn-primary" name="send" id="send"><i class="fa fa-chevron-circle-right"></i></button>
+                                <form name="request" id="rep_div" method="post" class="form-inline form-request"
+                                    enctype="multipart/form-data">
+                                    <textarea class="form-control-plaintext" name="text_msg" rows="2" id="comment"
+                                        placeholder="typing your message ..."></textarea>
+                                    <i class="fa fa-camera" id="file_icon"></i>
+                                    <input type="file" name="file" id="file_photo">
+                                    <input type="hidden" name="user_id" id="user_id" value="">
+                                    <input type="hidden" value="" id="count_messages">
+                                    <button type="submit" class="btn btn-primary" name="send" id="send"><i class="fa fa-chevron-circle-right"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -214,7 +229,7 @@ $obj = new admin();
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                             Copyright © 2018 Concept. All rights reserved.
+                            Copyright © 2018 Concept. All rights reserved.
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="text-md-right footer-links d-none d-sm-block">
@@ -260,143 +275,158 @@ $obj = new admin();
     <script src="assets/libs/js/dashboard-ecommerce.js"></script>
 </body>
 <script>
-    $('.unread').parent().css({"background":"rgba(225, 228, 224, 0.78)"});
-    $("#file_icon").click(function () {
-  $("input[type='file']").trigger('click');
+$('.unread').parent().css({
+    "background": "rgba(225, 228, 224, 0.78)"
+});
+$("#file_icon").click(function() {
+    $("input[type='file']").trigger('click');
 });
 
 //to scroll to the last message
-function scroll(){
+function scroll() {
     $('.content_msg').children().removeAttr('id');
-    $('.content_msg').children().last().attr('id','last');
-    if(document.getElementById('last')!=undefined){
+    $('.content_msg').children().last().attr('id', 'last');
+    if (document.getElementById('last') != undefined) {
         document.getElementById('last').scrollIntoView();
     }
-    
+
 }
 
 $('input[type="file"]').on('change', function() {
     var file_data = $('#file_photo').prop('files')[0];
-    var id = $('#user_id').val();   
-    var form_data = new FormData(); 
+    var id = $('#user_id').val();
+    var form_data = new FormData();
     form_data.append('file', file_data);
     form_data.append('user_id', id);
     $.ajax({
-                url: "core/add_msg_admin.php",
-                type: "POST",
-                async: false,
-                data: form_data,
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function (data) {
-                    $('.content_msg').html('');
-                    $('.content_msg').html(data); 
-                    scroll();
-                }
-            });
+        url: "core/add_msg_admin.php",
+        type: "POST",
+        async: false,
+        data: form_data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(data) {
+            $('.content_msg').html('');
+            $('.content_msg').html(data);
+            scroll();
+        }
+    });
 
 });
 
-setInterval(function(){
-    var user_id=$('#user_id').val();
+setInterval(function() {
+    var user_id = $('#user_id').val();
     $.ajax({
         url: "core/display_msg.php",
-            type: "POST",
-            async: false,
-            data: {
-                "user_id":user_id
-            },
-            success: function(data){
+        type: "POST",
+        async: false,
+        data: {
+            "user_id": user_id
+        },
+        success: function(data) {
+
+            let length = data.substr(0, data.indexOf('<'));
+            let count_msg = $('#count_messages').val();
+            if (count_msg !== length) {
+                // console.log('done');
+                $('#count_messages').val(length);
                 $('.content_msg').html('');
-                $('.content_msg').html(data); 
+                $('.content_msg').html(data.substr(data.indexOf('<')));
                 scroll();
             }
+        }
     });
-    
+
 }, 2000);
 
-$('#rep_div').submit(function(e){
+$('#rep_div').submit(function(e) {
     e.preventDefault();
     var formdata = new FormData(this);
     $.ajax({
-                url: "core/add_msg_admin.php",
-                type: "POST",
-                async: false,
-                data: formdata,
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function (data) {
-                    $('#comment').val('');
-                    $('.content_msg').html('');
-                    $('.content_msg').html(data);
-                    scroll();
-                }
-            });
+        url: "core/add_msg_admin.php",
+        type: "POST",
+        async: false,
+        data: formdata,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(data) {
+            $('#comment').val('');
+            let length = data.substr(0, data.indexOf('<'));
+            $('#count_messages').val(length);
+            $('.content_msg').html('');
+            $('.content_msg').html(data.substr(data.indexOf('<')));
+            scroll();
+        }
+    });
 });
-window.onload = function(){
+window.onload = function() {
     var id = $('#1').children("div").attr("data-id");
     var image = $('#1').children("div").children('img').attr("src");
     var firstName = $('#1').children("div").children('span').text();
-    $('#header_photo').attr('src',image);
+    $('#header_photo').attr('src', image);
     $('#header_name').text(firstName);
-    $('#1').children("div").children('div').attr('class',"last_msg read");
-    $('.users[data-id="'+id+'"]').removeClass('selected');
-    $('.users[data-id="'+id+'"]').addClass('selected');
+    $('#1').children("div").children('div').attr('class', "last_msg read");
+    $('.users[data-id="' + id + '"]').removeClass('selected');
+    $('.users[data-id="' + id + '"]').addClass('selected');
     $('#user_id').val(id);
 
     $.ajax({
         url: "core/display_msg.php",
-            type: "POST",
-            async: false,
-            data: {
-                "user_id":id
-            },
-            success: function(data){
-                $('.content_msg').html('');
-                $('.content_msg').html(data); 
-                scroll();
-            }
+        type: "POST",
+        async: false,
+        data: {
+            "user_id": id
+        },
+        success: function(data) {
+            let length = data.substr(0, data.indexOf('<'));
+            $('#count_messages').val(length);
+            $('.content_msg').html('');
+            $('.content_msg').html(data.substr(data.indexOf('<')));
+            scroll();
+        }
     });
 }
 
-function display_messages(id){
+function display_messages(id) {
     $('div').removeClass('selected');
-    $('div[data-id="'+id+'"]').removeClass('selected');
-    $('div[data-id="'+id+'"]').addClass('selected');
-    var image=$('div[data-id="'+id+'"]').children('img').attr('src');
-    var first_name=$('div[data-id="'+id+'"]').children('span').text();
+    $('div[data-id="' + id + '"]').removeClass('selected');
+    $('div[data-id="' + id + '"]').addClass('selected');
+    var image = $('div[data-id="' + id + '"]').children('img').attr('src');
+    var first_name = $('div[data-id="' + id + '"]').children('span').text();
+    $('#header_name').text(first_name);
+    $('#header_photo').attr('src', image);
     $('#user_id').val(id);
     $.ajax({
         url: "core/display_msg.php",
-            type: "POST",
-            async: false,
-            data: {
-                "user_id":id
-            },
-            success: function(data){
-                $('.content_msg').html('');
-                $('.content_msg').html(data);
-                scroll(); 
-            }
+        type: "POST",
+        async: false,
+        data: {
+            "user_id": id
+        },
+        success: function(data) {
+            $('.content_msg').html('');
+            $('.content_msg').html(data.substr(data.indexOf('<')));
+            scroll();
+        }
     });
 }
-function delete_chat(){
+
+function delete_chat() {
     var id = $('#user_id').val();
     $.ajax({
         url: "core/delete_msg.php",
-            type: "POST",
-            async: false,
-            data: {
-                "user_id":id
-            },
-            success: function(data){
-                $('.content_msg').html(''); 
-            }
+        type: "POST",
+        async: false,
+        data: {
+            "user_id": id
+        },
+        success: function(data) {
+            //$('.content_msg').html('');
+        }
     });
 }
-
-   </script>
+</script>
 
 </html>

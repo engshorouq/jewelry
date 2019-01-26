@@ -42,7 +42,8 @@ $obj = new website();
                     <img src="../assets/img/logo.jpg" alt="logo" id="logo">
                 </a>
                 <h2 id="logo-h"> Jewelry</h2>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
@@ -53,28 +54,33 @@ $obj = new website();
                             </div>
                         </li>-->
                         <li class="nav-item dropdown notification">
-                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
+                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span
+                                    class="indicator"></span></a>
                             <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
                                 <li>
                                     <div class="notification-title"> Notification</div>
                                     <div class="notification-listt">
                                         <div class="list-group">
-                                        <a href='contact.php' class="list-group-item list-group-item-action">
+                                            <a href='contact.php' class="list-group-item list-group-item-action">
                                                 Notifications
                                             </a>
-                                            
+
                                         </div>
                                     </div>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                                 <img src="../assets/users_img/<?=$_SESSION['user_img']?>" alt="" class="user-avatar-md rounded-circle">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name"><?=$_SESSION['user_first_name']." ".$_SESSION['user_last_name'];?></h5>
+                                    <h5 class="mb-0 text-white nav-user-name">
+                                        <?=$_SESSION['user_first_name']." ".$_SESSION['user_last_name'];?>
+                                    </h5>
                                 </div>
                                 <a class="dropdown-item" href="setting_saller.php"><i class="fas fa-cog mr-2"></i>Setting</a>
                                 <a class="dropdown-item" href="logout.php"><i class="fas fa-power-off mr-2"></i>Logout</a>
@@ -94,7 +100,8 @@ $obj = new website();
             <div class="menu-list">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <a class="d-xl-none d-lg-none" href="#">MENU</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
@@ -136,38 +143,40 @@ $obj = new website();
                             <p class="p_head">All Messages</p>
                         </div>
                         <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">
-                            
+
                             <h2 id="header_name">Admin</h2>
                         </div>
                         <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
                             <p class="p_head" style="float:right;">
-                            <a href="javascript:delete_chat();"><i class="fa fa-trash"></i>  Delete</a></p>
+                                <a href="javascript:delete_chat();"><i class="fa fa-trash"></i> Delete</a></p>
                         </div>
                     </div>
                     <div class="row">
 
-                            <div class="content_msg" style="width: 63rem;margin-left: 25px;height: 300px;">
-                                
-                                
-                                    
-                                
-                                </div>
-                            
+                        <div class="content_msg" style="width: 63rem;margin-left: 25px;height: 300px;">
+
+
+
+
                         </div>
-                        <div class="form_div">
-                                <form name="request" id="rep_div" method="post" class="form-inline form-request" enctype="multipart/form-data">
-                                <textarea class="form-control-plaintext" name="text_msg" style="width: 56rem;margin-left: 10px;" rows="2" id="comment" placeholder="typing your message ..." autofocus></textarea>
-                                <i class="fa fa-camera" id="file_icon"></i>
-                                <input type="file" name="file" id="file_photo">
-                                <input type="hidden" name="user_id" id="user_id" value="<?=$_SESSION['user_id']?>">
-                                <button type="submit" class="btn btn-primary" name="send" id="send"><i class="fa fa-chevron-circle-right"></i></button>
-                                </form>
-                            </div>
 
                     </div>
+                    <div class="form_div">
+                        <form name="request" id="rep_div" method="post" class="form-inline form-request" enctype="multipart/form-data">
+                            <textarea class="form-control-plaintext" name="text_msg" style="width: 56rem;margin-left: 10px;"
+                                rows="2" id="comment" placeholder="typing your message ..." autofocus></textarea>
+                            <i class="fa fa-camera" id="file_icon"></i>
+                            <input type="hidden" value="" id="count_messages">
+                            <input type="file" name="file" id="file_photo">
+                            <input type="hidden" name="user_id" id="user_id" value="<?=$_SESSION['user_id']?>">
+                            <button type="submit" class="btn btn-primary" name="send" id="send"><i class="fa fa-chevron-circle-right"></i></button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
-        
+        </div>
+
         <!-- ============================================================== -->
         <!-- end wrapper  -->
         <!-- ============================================================== -->
@@ -198,126 +207,134 @@ $obj = new website();
     <script src="../assets/libs/js/dashboard-ecommerce.js"></script>
 </body>
 <script>
- /*$('.unread').parent().css({"background":"rgba(225, 228, 224, 0.78)"});*/
- 
- //when click on the file icon tthe file input open
-    $("#file_icon").click(function () {
-  $("input[type='file']").trigger('click');
-        });
+/*$('.unread').parent().css({"background":"rgba(225, 228, 224, 0.78)"});*/
+
+//when click on the file icon tthe file input open
+$("#file_icon").click(function() {
+    $("input[type='file']").trigger('click');
+});
 
 //to send image when selected
 $('input[type="file"]').on('change', function() {
     var file_data = $('#file_photo').prop('files')[0];
-    var id = $('#user_id').val(); 
-    var flag = 0;  
-    var form_data = new FormData(); 
+    var id = $('#user_id').val();
+    var flag = 0;
+    var form_data = new FormData();
     form_data.append('file', file_data);
     form_data.append('user_id', id);
     form_data.append('flag', flag);
     $.ajax({
-                url: "core/add_msg_user.php",
-                type: "POST",
-                async: false,
-                data: form_data,
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function (data) {
-                    $('.content_msg').html('');
-                    $('.content_msg').html(data);
-                    scroll(); 
-                }
-            });
+        url: "core/add_msg_user.php",
+        type: "POST",
+        async: false,
+        data: form_data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(data) {
+            let length = data.substr(0, data.indexOf('<'));
+            $('#count_messages').val(length);
+            $('.content_msg').html('');
+            $('.content_msg').html(data.substr(data.indexOf('<')));
+            scroll();
+        }
+    });
 
 });
 
-setInterval(function(){
-    var user_id=$('#user_id').val();
+setInterval(function() {
+    var user_id = $('#user_id').val();
     $.ajax({
         url: "core/display_msg.php",
-            type: "POST",
-            async: false,
-            data: {
-                "user_id":user_id
-            },
-            success: function(data){
+        type: "POST",
+        async: false,
+        data: {
+            "user_id": user_id
+        },
+        success: function(data) {
+            let length = data.substr(0, data.indexOf('<'));
+            let count_msg = $('#count_messages').val();
+            if (count_msg !== length) {
+                // console.log('done');
+                $('#count_messages').val(length);
                 $('.content_msg').html('');
-                $('.content_msg').html(data); 
+                $('.content_msg').html(data.substr(data.indexOf('<')));
                 scroll();
             }
+        }
     });
-    
+
 }, 2000);
 
 //when click submit for message
-$('#rep_div').submit(function(e){
+$('#rep_div').submit(function(e) {
     e.preventDefault();
     var flag = 1;
     var formdata = new FormData(this);
     formdata.append('flag', flag);
     $.ajax({
-                url: "core/add_msg_user.php",
-                type: "POST",
-                async: false,
-                data: formdata,
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function (data) {
-                    $('#comment').val('');
-                    $('.content_msg').html('');
-                    $('.content_msg').html(data);
-                    scroll();
-                }
-            });
+        url: "core/add_msg_user.php",
+        type: "POST",
+        async: false,
+        data: formdata,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(data) {
+            $('#comment').val('');
+            $('.content_msg').html('');
+            $('.content_msg').html(data.substr(data.indexOf('<')));
+            scroll();
+        }
+    });
 });
 
 //to scroll to the last message
-function scroll(){
+function scroll() {
     $('.content_msg').children().removeAttr('id');
-    $('.content_msg').children().last().attr('id','last');
-    if(document.getElementById('last')!=undefined){
+    $('.content_msg').children().last().attr('id', 'last');
+    if (document.getElementById('last') != undefined) {
         document.getElementById('last').scrollIntoView();
     }
-    
+
 }
 
 
 //display messages when load the page
-window.onload = function(){
+window.onload = function() {
     var id = $('#user_id').val();
     $.ajax({
         url: "core/display_msg.php",
-            type: "POST",
-            async: false,
-            data: {
-                "user_id":id
-            },
-            success: function(data){
-                $('.content_msg').html('');
-                $('.content_msg').html(data); 
-                scroll();
-            }
+        type: "POST",
+        async: false,
+        data: {
+            "user_id": id
+        },
+        success: function(data) {
+            let length = data.substr(0, data.indexOf('<'));
+            $('#count_messages').val(length);
+            $('.content_msg').html('');
+            $('.content_msg').html(data.substr(data.indexOf('<')));
+            scroll();
+        }
     });
 }
 
-function delete_chat(){
+function delete_chat() {
     var id = $('#user_id').val();
     $.ajax({
         url: "core/delete_msg_request.php",
         type: "POST",
         async: false,
         data: {
-            "user_id":id
+            "user_id": id
         },
-        success: function(data){
+        success: function(data) {
             alert(data);
             //$('.content_msg').html(''); 
         }
     });
 }
-
-   
 </script>
 
 </html>

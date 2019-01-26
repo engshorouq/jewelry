@@ -161,7 +161,7 @@ class admin
     }
 
     public function users_contact($user_id){
-        $result=mysqli_query($this->conn,"select * from contact where user_id=$user_id order by date desc");
+        $result=mysqli_query($this->conn,"select * from contact where user_id=$user_id");
         if(mysqli_num_rows($result)>0){
             $data=array();
             while($row=mysqli_fetch_array($result)){

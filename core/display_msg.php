@@ -25,6 +25,7 @@ $date_delete = $obj->get_date($user_id,'replay');
                     $date[$key] = $row['date'];
                 }
                 array_multisort($date, SORT_ASC, $merge);
+                $output .=count($merge);
                 //display the array after sort it
                 //if there is any delete messages
                 if($date_delete==null){
