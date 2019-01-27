@@ -198,5 +198,30 @@ class admin
             return null;
         }
     }
+    public function get_user($id){
+        $result = mysqli_query($this->conn,"SELECT * FROM users WHERE id=$id and type='saller'");
+        if(mysqli_num_rows($result)>0){
+            $data=array();
+            while($row = mysqli_fetch_array($result)){
+                $data[]=$row;
+            }
+            return $data;
+        }else{
+            return null;
+        } 
+    }
+
+    public function get_withdraw(){
+        $result = mysqli_query($this->conn,"SELECT * FROM withdraw ORDER BY id desc");
+        if(mysqli_num_rows($result)>0){
+            $data=array();
+            while($row = mysqli_fetch_array($result)){
+                $data[]=$row;
+            }
+            return $data;
+        }else{
+            return null;
+        } 
+    }
     
 }

@@ -61,7 +61,7 @@ include_once("core/admin.class.php");
                                     <div class="notification-title"> Notification</div>
                                     <div class="notification-listt">
                                         <div class="list-group">
-                                        <a href='request.php?data=0' class="list-group-item list-group-item-action">
+                                            <a href='request.php?data=0' class="list-group-item list-group-item-action">
                                                 Saller Notifications
                                             </a>
                                             <a href="request.php?data=1" class="list-group-item list-group-item-action">
@@ -74,19 +74,22 @@ include_once("core/admin.class.php");
                             </ul>
                         </li>
                         <li class="nav-item dropdown nav-user">
-                        <?php $result=$obj->admin_info($_SESSION['login_id']);
+                            <?php $result=$obj->admin_info($_SESSION['login_id']);
                             foreach($result as $data){
 
                            
                         ?>
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                                 <img src="assets/admin_img/<?=$data['photo']?>" alt="" class="user-avatar-md rounded-circle">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name"><?= $data['first_name']." ".$data['last_name'];?></h5>
+                                    <h5 class="mb-0 text-white nav-user-name">
+                                        <?= $data['first_name']." ".$data['last_name'];?>
+                                    </h5>
                                 </div>
-                            <?php } ?>
+                                <?php } ?>
                                 <a class="dropdown-item" href="setting_admin.php"><i class="fas fa-cog mr-2"></i>Setting</a>
                                 <a class="dropdown-item" href="logout.php"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
@@ -131,6 +134,11 @@ include_once("core/admin.class.php");
                                     <i class="fa fa-fw fa-dollar-sign"></i>Commission</a>
 
                             </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="withdraw_request.php">
+                                    <i class="fa fa-fw fa-dollar-sign"></i>Withdraw Request</a>
+
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -155,12 +163,12 @@ include_once("core/admin.class.php");
                         </div>
                     </div>
                     <div class="row" id="display_cat">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 container">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 container">
                             <div class="img_cont">
                                 <img src="assets/category_img/products.png" alt="category image" class="img-thumbnail cat_img">
                             </div>
                             <div class="content">
-                                
+
                                 <a href="product.php?data=<?php echo 0 ?>" class="">
                                     <i class="fa fa-list"></i></a>
                                 <p>
@@ -379,90 +387,91 @@ include_once("core/admin.class.php");
     <script src="assets/libs/js/dashboard-ecommerce.js"></script>
 
     <script>
+    $('#target').submit(function(e) {
+        e.preventDefault();
+        var formdata = new FormData(this);
+        //alert(data.get('file').name);
+        $.ajax({
+            url: "core/add_category.php",
+            type: "POST",
+            async: false,
+            data: formdata,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                $('#add_category').modal('hide');
+                $('#display_cat').html('');
+                $('#display_cat').html(data);
 
-        $('#target').submit(function (e) {
-            e.preventDefault();
-            var formdata = new FormData(this);
-            //alert(data.get('file').name);
-            $.ajax({
-                url: "core/add_category.php",
-                type: "POST",
-                async: false,
-                data: formdata,
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function (data) {
-                    $('#add_category').modal('hide');
-                    $('#display_cat').html('');
-                    $('#display_cat').html(data);
-
-                }
-            });
+            }
         });
+    });
 
-        $('#edit_form').submit(function (e) {
-            e.preventDefault();
-            var id_cat = $('#cat_id').val();
-            var formdata = new FormData(this);
-            $.ajax({
-                url: "core/edit_category.php",
-                type: "POST",
-                async: false,
-                data: formdata,
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function (data) {
-                    $('#edit_category').modal('hide');
-                    $('.select_cat').html('');
-                    $('.select_cat').html(data);
-                    $('div[data-id="' + id_cat + '"]').removeClass('select_cat');
-                }
-            });
+    $('#edit_form').submit(function(e) {
+        e.preventDefault();
+        var id_cat = $('#cat_id').val();
+        var formdata = new FormData(this);
+        $.ajax({
+            url: "core/edit_category.php",
+            type: "POST",
+            async: false,
+            data: formdata,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                $('#edit_category').modal('hide');
+                $('.select_cat').html('');
+                $('.select_cat').html(data);
+                $('div[data-id="' + id_cat + '"]').removeClass('select_cat');
+            }
         });
+    });
 
-        $('#submit_delete').click(function () {
-            var id = $('#cat_id_del').val();
-            $.ajax({
-                url: "core/delete_category.php",
-                type: "POST",
-                async: false,
-                data: {
-                    "done": 1,
-                    "id": id
-                },
-                success: function (data) {
-                    $('.select_user').closest('div').remove();
-                }
-            })
-        });
+    $('#submit_delete').click(function() {
+        var id = $('#cat_id_del').val();
+        $.ajax({
+            url: "core/delete_category.php",
+            type: "POST",
+            async: false,
+            data: {
+                "done": 1,
+                "id": id
+            },
+            success: function(data) {
+                $('.select_user').closest('div').remove();
+            }
+        })
+    });
 
-        $('input[id="edit_file"]').on('change', function() {
-            $('#flag').val('2');
-        });
+    $('input[id="edit_file"]').on('change', function() {
+        $('#flag').val('2');
+    });
 
-        function add_category() {
-            $('#cat_name').val('');
-            $('#file').val('');
-            $('#add_category').modal();
-        }
-        function edit_category(id, photo, name) {
-            $('#pic_cat').attr('src', 'assets/category_img/' + photo);
-            $('#cat_id').val(id);
-            $('#edit_cat_name').val(name);
-            $('#flag').val('1');
-            $('div[data-id="' + id + '"]').removeClass('select_cat');
-            $('div[data-id="' + id + '"]').addClass('select_cat');
-            $('#edit_category').modal();
-        }
-        function delete_category(id, name) {
-            $('div[data-id="' + id + '"]').removeClass('select_user');
-            $('div[data-id="' + id + '"]').addClass('select_user');
-            $('#cat_id_del').val(id);
-            $('#cat_name_del').html(name);
-            $('#cat_delete').modal();
-        }
+    function add_category() {
+        $('#cat_name').val('');
+        $('#file').val('');
+        $('#add_category').modal();
+    }
+
+    function edit_category(id, photo, name) {
+        $('#pic_cat').attr('src', 'assets/category_img/' + photo);
+        $('#cat_id').val(id);
+        $('#edit_cat_name').val(name);
+        $('#flag').val('1');
+        $('div[data-id="' + id + '"]').removeClass('select_cat');
+        $('div[data-id="' + id + '"]').addClass('select_cat');
+        $('#edit_category').modal();
+    }
+
+    function delete_category(id, name) {
+        $('div[data-id="' + id + '"]').removeClass('select_user');
+        $('div[data-id="' + id + '"]').addClass('select_user');
+        $('#cat_id_del').val(id);
+        $('#cat_name_del').html(name);
+        $('#cat_delete').modal();
+    }
     </script>
 </body>
 

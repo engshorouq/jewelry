@@ -41,7 +41,8 @@ $obj = new admin();
                     <img src="assets/img/logo.jpg" alt="logo" id="logo">
                 </a>
                 <h2 id="logo-h"> Jewelry</h2>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
@@ -52,7 +53,9 @@ $obj = new admin();
                             </div>
                         </li>-->
                         <li class="nav-item dropdown notification">
-                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
+                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span
+                                    class="indicator"></span></a>
                             <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
                                 <li>
                                     <div class="notification-title"> Notification</div>
@@ -70,19 +73,22 @@ $obj = new admin();
                             </ul>
                         </li>
                         <li class="nav-item dropdown nav-user">
-                        <?php $result=$obj->admin_info($_SESSION['login_id']);
+                            <?php $result=$obj->admin_info($_SESSION['login_id']);
                             foreach($result as $data){
 
                            
                         ?>
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                                 <img src="assets/admin_img/<?=$data['photo']?>" alt="" class="user-avatar-md rounded-circle">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name"><?= $data['first_name']." ".$data['last_name'];?></h5>
+                                    <h5 class="mb-0 text-white nav-user-name">
+                                        <?= $data['first_name']." ".$data['last_name'];?>
+                                    </h5>
                                 </div>
-                            <?php } ?>
+                                <?php } ?>
                                 <a class="dropdown-item" href="setting_admin.php"><i class="fas fa-cog mr-2"></i>Setting</a>
                                 <a class="dropdown-item" href="logout.php"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
@@ -101,7 +107,8 @@ $obj = new admin();
             <div class="menu-list">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <a class="d-xl-none d-lg-none" href="#">MENU</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
@@ -126,6 +133,11 @@ $obj = new admin();
                                     <i class="fa fa-fw fa-dollar-sign"></i>Commission</a>
 
                             </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="withdraw_request.php">
+                                    <i class="fa fa-fw fa-dollar-sign"></i>Withdraw Request</a>
+
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -140,94 +152,104 @@ $obj = new admin();
         <div class="dashboard-wrapper">
             <div class="dashboard-ecommerce">
                 <div class="container-fluid dashboard-content ">
-                <form class="form-inline form-search" name="Search" method="post" enctype="multipart/form-data">
+                    <form class="form-inline form-search" name="Search" method="post" enctype="multipart/form-data">
 
-                <div class="form-group">
+                        <div class="form-group">
 
-                <input type="text" class="form-control search-text" id="search" placeholder="Search ..." name="text">
+                            <input type="text" class="form-control search-text" id="search" placeholder="Search ..."
+                                name="text">
 
-    </div>
-</form>
-        <div class="table-users">
-        <table class="table table-hover dataTable">
-    <thead>
-      <tr>
-        <th>photo</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Type</th>
-        <th>delete<th>
-      </tr>
-    </thead>
-    <tbody id="result_search">
-    <?php
+                        </div>
+                    </form>
+                    <div class="table-users">
+                        <table class="table table-hover dataTable">
+                            <thead>
+                                <tr>
+                                    <th>photo</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Type</th>
+                                    <th>delete<th>
+                                </tr>
+                            </thead>
+                            <tbody id="result_search">
+                                <?php
 $counter = 1;
 $xdata = $obj->Search_users("");
 if($xdata != null){
 foreach ($xdata as $ydata) {
 
     ?>
-      <tr data-id="<?php echo $ydata['id'] ?>">
+                                <tr data-id="<?php echo $ydata['id'] ?>">
 
-        <td><img src="assets/img/<?=$ydata['photo']?>" alt="personal photo" class="img-thumbnail rounded-circle" id="personal-photo"></td>
-        <td><?=$ydata['first_name'];?></td>
-        <td><?=$ydata['last_name'];?></td>
-        <td><?=$ydata['email'];?></td>
-        <td><?=$ydata['type'];?></td>
-        <td><a href="javascript:delete_user(<?php echo $ydata['id'] ?>);" class="btn btn-danger">delete</a></td>
+                                    <td><img src="assets/users_img/<?=$ydata['photo']?>" alt="personal photo" class="img-thumbnail rounded-circle"
+                                            id="personal-photo"></td>
+                                    <td>
+                                        <?=$ydata['first_name'];?>
+                                    </td>
+                                    <td>
+                                        <?=$ydata['last_name'];?>
+                                    </td>
+                                    <td>
+                                        <?=$ydata['email'];?>
+                                    </td>
+                                    <td>
+                                        <?=$ydata['type'];?>
+                                    </td>
+                                    <td><a href="javascript:delete_user(<?php echo $ydata['id'] ?>);" class="btn btn-danger">delete</a></td>
 
-      </tr>
-            <?php }}?>
+                                </tr>
+                                <?php }}?>
 
-    </tbody>
-  </table>
-  </div>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
 
-  <!-- The Modal -->
- <!-- The Modal -->
- <div class="modal fade" id="user_delete" tabindex="-1" role="basic" aria-hidden="true">
-    <div class="modal-dialog" style=" height: 80% !important;padding-top:10%;">
-        <div class="modal-content" style=" height: 250px !important;overflow:visible;">
+            <!-- The Modal -->
+            <!-- The Modal -->
+            <div class="modal fade" id="user_delete" tabindex="-1" role="basic" aria-hidden="true">
+                <div class="modal-dialog" style=" height: 80% !important;padding-top:10%;">
+                    <div class="modal-content" style=" height: 250px !important;overflow:visible;">
 
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title"> <i class="fa fa-trash"></i> Delete User</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-        <form name="formAdd" id="user_form_delete" method="post" class="form-horizontal"
-                      enctype="multipart/form-data">
-                    <fieldset>
-
-                        <input type="hidden" class="user_id" name="user_id" id="user_id" value="">
-
-
-                        <div class="form-group">
-                            <label class="col-lg-6 control-label">Are You Sure To Delete User <span id="user_name"></span> ?</label>
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title"> <i class="fa fa-trash"></i> Delete User</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
-                        <div class="form-group">
-                            <div class="col-lg-6 col-lg-offset-2">
 
-                                <button type="submit" name="submit_delete" data-dismiss="modal" id="submit_delete"
-                                        class="btn btn-primary">Delete
-                                </button>
-                                <button type="button" class="btn btn-cont" data-dismiss="modal">Cancel</button>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form name="formAdd" id="user_form_delete" method="post" class="form-horizontal" enctype="multipart/form-data">
+                                <fieldset>
 
-                            </div>
+                                    <input type="hidden" class="user_id" name="user_id" id="user_id" value="">
+
+
+                                    <div class="form-group">
+                                        <label class="col-lg-6 control-label">Are You Sure To Delete User <span id="user_name"></span>
+                                            ?</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-6 col-lg-offset-2">
+
+                                            <button type="submit" name="submit_delete" data-dismiss="modal" id="submit_delete"
+                                                class="btn btn-primary">Delete
+                                            </button>
+                                            <button type="button" class="btn btn-cont" data-dismiss="modal">Cancel</button>
+
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
                         </div>
-                    </fieldset>
-                </form>
-        </div>
 
-      </div>
-    </div>
-  </div>
+                    </div>
+                </div>
+            </div>
 
 
             <!-- ============================================================== -->
@@ -237,7 +259,7 @@ foreach ($xdata as $ydata) {
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                             Copyright © 2018 Concept. All rights reserved.
+                            Copyright © 2018 Concept. All rights reserved.
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="text-md-right footer-links d-none d-sm-block">
@@ -282,7 +304,7 @@ foreach ($xdata as $ydata) {
     <script src="assets/vendor/charts/c3charts/C3chartjs.js"></script>
     <script src="assets/libs/js/dashboard-ecommerce.js"></script>
     <script>
-    $('#search').keyup(function(){
+    $('#search').keyup(function() {
         //alert("done");
         var text = $(this).val();
         //alert(text);
@@ -291,14 +313,16 @@ foreach ($xdata as $ydata) {
             url: "core/search_user.php",
             type: "POST",
             async: false,
-            data: {"search":text},
-            success: function(data){
+            data: {
+                "search": text
+            },
+            success: function(data) {
                 $('tbody').html(data);
             }
         })
 
     });
-    $('#submit_delete').click(function(){
+    $('#submit_delete').click(function() {
         var id = $('#user_id').val();
         //alert(id);
         $.ajax({
@@ -306,21 +330,22 @@ foreach ($xdata as $ydata) {
             type: "POST",
             async: false,
             data: {
-                "done" : 1,
-                "id" : id
+                "done": 1,
+                "id": id
             },
-            success: function(data){
+            success: function(data) {
                 $('.select_user').closest('tr').remove();
             }
         })
     });
-        function delete_user(id){
 
-            //clearForm($('#user_form_delete'));
-            $('tr[data-id="'+id+'"]').removeClass('select_user');
-        $('tr[data-id="'+id+'"]').addClass('select_user');
-            $('#user_id').val(id);
-            $('#user_delete').modal();
+    function delete_user(id) {
+
+        //clearForm($('#user_form_delete'));
+        $('tr[data-id="' + id + '"]').removeClass('select_user');
+        $('tr[data-id="' + id + '"]').addClass('select_user');
+        $('#user_id').val(id);
+        $('#user_delete').modal();
 
     }
     </script>

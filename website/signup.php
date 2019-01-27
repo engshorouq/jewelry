@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,15 +10,16 @@
     <link rel="stylesheet" href="fontawesome/css/fontawesome-all.css">
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 </head>
+
 <body>
-    <header >
+    <header>
         <div class="row" style="background: lightgoldenrodyellow;">
             <div class="col-col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
                 <img src="../assets/img/logo.png" alt="logo" class="logo-header">
             </div>
             <div class="col-col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                
-                
+
+
                 <ul class="ul_header">
                     <li><a href="login.php">Login</a></li>
                     <li><a href="signup.php">signup</a></li>
@@ -32,38 +34,44 @@
     <!--Start of Nav-->
     <nav>
         <div class="row" id="row">
-                <ul class="ul_nav">
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="#">Stores</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
+            <ul class="ul_nav">
+                <li><a href="index.php">Home</a></li>
+                <li><a href="all_products.php?data=0">Products</a></li>
+                <li><a href="all_stores.php">Stores</a></li>
+                <li><a href="all_product_cat.php">Categories</a></li>
+                <li><a href="about_us.php">About Us</a></li>
+                <li><a href="contact_customer.php">Contact</a></li>
+            </ul>
         </div>
     </nav>
-<!-- Start of Sign up form-->
+    <!-- Start of Sign up form-->
     <div class="container_signup">
         <h2>Create Account</h2>
         <p> Already have an account ? <a href="login.php" target="_blank">login</a></p>
         <form class="signup_form" method="post">
             <div class="form-group">
-                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" required autocomplete="off">
+                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name"
+                    required autocomplete="off">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" required autocomplete="off">
+                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name"
+                    required autocomplete="off">
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Email Address" required autocomplete="off">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email Address" required
+                    autocomplete="off">
             </div>
             <div class="form-group">
-                <input type="number" class="form-control" name="number" id="number" placeholder="Phone Number Start With 05-" pattern="[0-9]{10}" required autocomplete="off">
+                <input type="number" class="form-control" name="number" id="number" placeholder="Phone Number Start With 05-"
+                    pattern="[0-9]{10}" required autocomplete="off">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required autocomplete="off">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password"
+                    required autocomplete="off">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required autocomplete="off">
+                <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password"
+                    required autocomplete="off">
             </div>
             <!-- the div if the password and confirm password not matches-->
             <div id="error_msg_pass">
@@ -72,7 +80,7 @@
             <div class="custom-control custom-radio">
                 <input type="radio" class="custom-control-input" id="customRadio" name="type" value="saller">
                 <label class="custom-control-label" for="customRadio" style="margin-right: 91%;">Saller</label>
-            </div> 
+            </div>
             <div class="custom-control custom-radio">
                 <input type="radio" class="custom-control-input" id="customRadio2" name="type" value="customer">
                 <label class="custom-control-label" for="customRadio2" style="margin-right: 90%;">Customer</label>
@@ -93,16 +101,16 @@
         </div>
     </footer>
 
-    
+
     <script src="jquery/jquery-3.3.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.bundle.js"></script>
     <script>
-        $('.signup_form').submit(function(e){
-            e.preventDefault();
-            let confirm_password = document.getElementById('confirm_password').value;
-            let password = document.getElementById('password').value;
-            if(confirm_password===password){
-                $('#error_msg_pass').html('');
+    $('.signup_form').submit(function(e) {
+        e.preventDefault();
+        let confirm_password = document.getElementById('confirm_password').value;
+        let password = document.getElementById('password').value;
+        if (confirm_password === password) {
+            $('#error_msg_pass').html('');
             var formdata = new FormData(this);
             $.ajax({
                 url: "core/add_user.php",
@@ -112,18 +120,23 @@
                 contentType: false,
                 cache: false,
                 processData: false,
-                success: function (data) {
-                    if(data === "true"){
+                success: function(data) {
+                    if (data === "true") {
                         window.location.href = "login.php";
-                    }else{
-                        $('#error_msg').html('<p style="color:red; margin-to:10px;"><i class="fa fa-exclamation-circle"></i> This User Is olready exist .... !!');
+                    } else {
+                        $('#error_msg').html(
+                            '<p style="color:red; margin-to:10px;"><i class="fa fa-exclamation-circle"></i> This User Is olready exist .... !!'
+                        );
                     }
                 }
             });
-            }else{
-                $('#error_msg_pass').html('<p style="color:red;"><i class="fa fa-exclamation-circle"></i> The password and confirm password not matches !!</p>')
-            }
-        });
+        } else {
+            $('#error_msg_pass').html(
+                '<p style="color:red;"><i class="fa fa-exclamation-circle"></i> The password and confirm password not matches !!</p>'
+            )
+        }
+    });
     </script>
 </body>
+
 </html>

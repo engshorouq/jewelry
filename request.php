@@ -133,6 +133,11 @@ $obj = new admin();
                                     <i class="fa fa-fw fa-dollar-sign"></i>Commission</a>
 
                             </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="withdraw_request.php">
+                                    <i class="fa fa-fw fa-dollar-sign"></i>Withdraw Request</a>
+
+                            </li>
                         </ul>
                     </div>
                 </nav>

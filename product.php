@@ -61,7 +61,7 @@ $obj = new admin();
                                     <div class="notification-title"> Notification</div>
                                     <div class="notification-listt">
                                         <div class="list-group">
-                                        <a href='request.php?data=0' class="list-group-item list-group-item-action">
+                                            <a href='request.php?data=0' class="list-group-item list-group-item-action">
                                                 Saller Notifications
                                             </a>
                                             <a href="request.php?data=1" class="list-group-item list-group-item-action">
@@ -73,19 +73,22 @@ $obj = new admin();
                             </ul>
                         </li>
                         <li class="nav-item dropdown nav-user">
-                        <?php $result=$obj->admin_info($_SESSION['login_id']);
+                            <?php $result=$obj->admin_info($_SESSION['login_id']);
                             foreach($result as $data){
 
                            
                         ?>
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                                 <img src="assets/admin_img/<?=$data['photo']?>" alt="" class="user-avatar-md rounded-circle">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name"><?= $data['first_name']." ".$data['last_name'];?></h5>
+                                    <h5 class="mb-0 text-white nav-user-name">
+                                        <?= $data['first_name']." ".$data['last_name'];?>
+                                    </h5>
                                 </div>
-                            <?php } ?>
+                                <?php } ?>
                                 <a class="dropdown-item" href="setting_admin.php"><i class="fas fa-cog mr-2"></i>Setting</a>
                                 <a class="dropdown-item" href="logout.php"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
@@ -130,6 +133,11 @@ $obj = new admin();
                                     <i class="fa fa-fw fa-dollar-sign"></i>Commission</a>
 
                             </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="withdraw_request.php">
+                                    <i class="fa fa-fw fa-dollar-sign"></i>Withdraw Request</a>
+
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -170,20 +178,30 @@ $obj = new admin();
                                 $result_product = $obj->display_products($_GET['data']);
                                 if($result_product!= null){
                                 foreach ($result_product as $ydata) {?>
-                                    <tr data-id="<?php echo $ydata['id'] ?>">
+                                <tr data-id="<?php echo $ydata['id'] ?>">
 
-                                        <td><img src="assets/product_img/<?=$ydata['photo']?>" alt="personal photo" class="img-thumbnail rounded-circle" id="personal-photo"></td>
-                                        <td><?=$ydata['name'];?></td>
-                                        <td><?=$obj->get_store_name($ydata['store_id']);?></td>
-                                        <td><?=$ydata['gold_weight'];?> kram</td>
-                                        <td><?=($ydata['gold_weight']*$obj->get_price($ydata['gold_kerat'])+$ydata['manuf']); ?> $</td>
-                                        <td><a href="javascript:delete_product(<?php echo $ydata['id'] ?>);" class="btn btn-danger">delete</a></td>
+                                    <td><img src="assets/product_img/<?=$ydata['photo']?>" alt="personal photo" class="img-thumbnail rounded-circle"
+                                            id="personal-photo"></td>
+                                    <td>
+                                        <?=$ydata['name'];?>
+                                    </td>
+                                    <td>
+                                        <?=$obj->get_store_name($ydata['store_id']);?>
+                                    </td>
+                                    <td>
+                                        <?=$ydata['gold_weight'];?> kram</td>
+                                    <td>
+                                        <?=($ydata['gold_weight']*$obj->get_price($ydata['gold_kerat'])+$ydata['manuf']); ?>
+                                        $</td>
+                                    <td><a href="javascript:delete_product(<?php echo $ydata['id'] ?>);" class="btn btn-danger">delete</a></td>
 
-                                   </tr>
-                                  <?php }
+                                </tr>
+                                <?php }
                                   }else{?>
-                                      <tr><?php echo "No Products";?></tr>
-                                 <?php }?>
+                                <tr>
+                                    <?php echo "No Products";?>
+                                </tr>
+                                <?php }?>
                             </tbody>
                         </table>
                     </div>
@@ -192,74 +210,74 @@ $obj = new admin();
         </div>
 
 
-            <!-- The Modal -->
-            <!-- The Modal -->
-            <div class="modal fade" id="product_delete" tabindex="-1" role="basic" aria-hidden="true">
-                <div class="modal-dialog" style=" height: 80% !important;padding-top:10%;">
-                    <div class="modal-content" style=" height: 250px !important;overflow:visible;">
+        <!-- The Modal -->
+        <!-- The Modal -->
+        <div class="modal fade" id="product_delete" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog" style=" height: 80% !important;padding-top:10%;">
+                <div class="modal-content" style=" height: 250px !important;overflow:visible;">
 
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title"> <i class="fa fa-trash"></i> Delete product</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title"> <i class="fa fa-trash"></i> Delete product</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
 
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <form name="formAdd" id="product_form_delete" method="post" class="form-horizontal" enctype="multipart/form-data">
-                                <fieldset>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form name="formAdd" id="product_form_delete" method="post" class="form-horizontal" enctype="multipart/form-data">
+                            <fieldset>
 
-                                    <input type="hidden" class="user_id" name="product_id" id="product_id" value="">
+                                <input type="hidden" class="user_id" name="product_id" id="product_id" value="">
 
 
-                                    <div class="form-group">
-                                        <label class="col-lg-6 control-label">Are You Sure To Delete Product ?</label>
+                                <div class="form-group">
+                                    <label class="col-lg-6 control-label">Are You Sure To Delete Product ?</label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-6 col-lg-offset-2">
+
+                                        <button type="submit" name="submit_delete" data-dismiss="modal" id="submit_delete"
+                                            class="btn btn-primary">Delete
+                                        </button>
+                                        <button type="button" class="btn btn-cont" data-dismiss="modal">Cancel</button>
+
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-lg-6 col-lg-offset-2">
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
 
-                                            <button type="submit" name="submit_delete" data-dismiss="modal" id="submit_delete"
-                                                class="btn btn-primary">Delete
-                                            </button>
-                                            <button type="button" class="btn btn-cont" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
 
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </form>
+
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <div class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        Copyright © 2018 Concept. All rights reserved.
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="text-md-right footer-links d-none d-sm-block">
+                            <a href="javascript: void(0);">About</a>
+                            <a href="javascript: void(0);">Support</a>
+                            <a href="javascript: void(0);">Contact Us</a>
                         </div>
-
                     </div>
                 </div>
             </div>
-
-
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <div class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            Copyright © 2018 Concept. All rights reserved.
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <div class="text-md-right footer-links d-none d-sm-block">
-                                <a href="javascript: void(0);">About</a>
-                                <a href="javascript: void(0);">Support</a>
-                                <a href="javascript: void(0);">Contact Us</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ============================================================== -->
-            <!-- end footer -->
-            <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
-        <!-- end wrapper  -->
+        <!-- end footer -->
         <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- end wrapper  -->
+    <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- end main wrapper  -->
@@ -286,52 +304,53 @@ $obj = new admin();
     <script src="assets/vendor/charts/c3charts/C3chartjs.js"></script>
     <script src="assets/libs/js/dashboard-ecommerce.js"></script>
     <script>
-        $('#search').keyup(function () {
-            //alert("done");
-            var cat_id = $('#first_row').attr('data-id');
-            var text = $(this).val();
-            //alert(text);
-            
-            $.ajax({
-                url: "core/search_product.php",
-                type: "POST",
-                async: false,
-                data: { 
-                    "search": text,
-                    "cat_id":cat_id 
-                    },
-                success: function (data) {
-                    $('tbody').html('');
-                    $('tbody').html(data);
-                }
-            })
+    $('#search').keyup(function() {
+        //alert("done");
+        var cat_id = $('#first_row').attr('data-id');
+        var text = $(this).val();
+        //alert(text);
 
-        });
-        $('#submit_delete').click(function () {
-            var id = $('#product_id').val();
-            //alert(id);
-            $.ajax({
-                url: "core/delete_product.php",
-                type: "POST",
-                async: false,
-                data: {
-                    "done": 1,
-                    "id": id
-                },
-                success: function (data) {
-                    $('.select_user').closest('tr').remove();
-                }
-            })
-        });
-        function delete_product(id) {
+        $.ajax({
+            url: "core/search_product.php",
+            type: "POST",
+            async: false,
+            data: {
+                "search": text,
+                "cat_id": cat_id
+            },
+            success: function(data) {
+                $('tbody').html('');
+                $('tbody').html(data);
+            }
+        })
 
-            //clearForm($('#user_form_delete'));
-            $('tr[data-id="' + id + '"]').removeClass('select_user');
-            $('tr[data-id="' + id + '"]').addClass('select_user');
-            $('#product_id').val(id);
-            $('#product_delete').modal();
+    });
+    $('#submit_delete').click(function() {
+        var id = $('#product_id').val();
+        //alert(id);
+        $.ajax({
+            url: "core/delete_product.php",
+            type: "POST",
+            async: false,
+            data: {
+                "done": 1,
+                "id": id
+            },
+            success: function(data) {
+                $('.select_user').closest('tr').remove();
+            }
+        })
+    });
 
-        }
+    function delete_product(id) {
+
+        //clearForm($('#user_form_delete'));
+        $('tr[data-id="' + id + '"]').removeClass('select_user');
+        $('tr[data-id="' + id + '"]').addClass('select_user');
+        $('#product_id').val(id);
+        $('#product_delete').modal();
+
+    }
     </script>
 </body>
 
